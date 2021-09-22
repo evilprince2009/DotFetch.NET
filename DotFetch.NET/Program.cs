@@ -11,7 +11,7 @@ namespace DotFetch.NET
         {
             
             Console.WriteLine("                                 =========> Wellcome || Windows PowerShell <=========");
-            Console.WriteLine(InformationGenerator.GetUptime());
+            Console.WriteLine(InformationGenerator.UpTime());
         }
     }
 }

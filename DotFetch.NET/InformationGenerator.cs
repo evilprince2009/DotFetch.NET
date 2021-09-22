@@ -38,11 +38,18 @@ namespace DotFetch.NET
             return "Host: Unknown";
         }
 
-        public static string GetUptime()
+        public static string UpTime()
         {
             ManagementObject marker = new (@"\\.\root\cimv2:Win32_OperatingSystem=@");
             DateTime lastBootUp = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
-            return (DateTime.Now.ToUniversalTime() - lastBootUp.ToUniversalTime()).ToString();
+            var timeStamp = DateTime.Now.ToUniversalTime() - lastBootUp.ToUniversalTime();
+            string[] duration =
+            {
+                "Uptime:", timeStamp.Days.ToString(), "Days", timeStamp.Hours.ToString(), "Hours",
+                timeStamp.Minutes.ToString(), "Minutes"
+            };
+
+            return string.Join(" ", duration);
         }
     }
 }
