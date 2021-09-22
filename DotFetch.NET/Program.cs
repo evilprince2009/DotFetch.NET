@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Text;
 
 namespace DotFetch.NET
 {
-    partial class Program
+    class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            foreach (var item in LogoRenderer.Windows())
-            {
-                Console.WriteLine(item);
-            }
+            
+            Console.WriteLine("                                 =========> Wellcome || Windows PowerShell <=========");
+            Console.WriteLine(InformationGenerator.KernelVersion());
         }
     }
 }
