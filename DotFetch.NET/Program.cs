@@ -6,7 +6,10 @@ namespace DotFetch.NET
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            foreach (var item in LogoRenderer.Windows())
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

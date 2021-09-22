@@ -1,10 +1,12 @@
+using System.Collections.Generic;
+
 namespace DotFetch.NET
 {
     public class LogoRenderer
     {
         public static List<string> Windows()
 		{
-			List<string> LogoBuffer = new List<string>()
+			List<string> LogoBuffer = new()
 			{
 				{ "                                       ```...--://+oo`" },
 				{ "                         ```...--://+oooossyyyyyyyyyy`" },
