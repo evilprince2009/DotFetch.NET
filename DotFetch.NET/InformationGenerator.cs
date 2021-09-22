@@ -72,5 +72,22 @@ namespace DotFetch.NET
 
             return "Couldn't detect !";
         }
+        // CALCULATE AVAILABLE RAM
+        public static string AvailableRAM()
+        {
+            const string query = "SELECT * FROM Win32_OperatingSystem";
+            ManagementObjectSearcher searcher = new(query);
+            foreach (ManagementObject o in searcher.Get())
+            {
+                var os = (ManagementObject) o;
+                var totalRam = os["TotalVisibleMemorySize"];
+                var freeRam = os["FreePhysicalMemory"];
+                var usedRam = Convert.ToInt64(totalRam) - Convert.ToInt64(freeRam);
+                return "RAM: " + usedRam + "MB / " + totalRam + "MB";
+            }
+            return "RAM: Unknown";
+        }
+
+        
     }
 }
