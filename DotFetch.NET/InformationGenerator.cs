@@ -91,15 +91,12 @@ namespace DotFetch.NET
         // check internet connection
         public static string CheckInternetConnection()
         {
+            const string url = "http://www.google.com";
             try
             {
-                using (var client = new System.Net.WebClient())
-                {
-                    using (var stream = client.OpenRead("http://www.google.com"))
-                    {
-                        return "Internet: Connected";
-                    }
-                }
+                using var client = new System.Net.WebClient();
+                using var stream = client.OpenRead(url);
+                return "Internet: Connected";
             }
             catch
             {
