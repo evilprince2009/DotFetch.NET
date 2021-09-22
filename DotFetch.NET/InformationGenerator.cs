@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Management;
+using System.Diagnostics;
 
 namespace DotFetch.NET
 {
@@ -35,6 +36,13 @@ namespace DotFetch.NET
             }
 
             return "Host: Unknown";
+        }
+
+        public static string GetUptime()
+        {
+            ManagementObject marker = new (@"\\.\root\cimv2:Win32_OperatingSystem=@");
+            DateTime lastBootUp = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
+            return (DateTime.Now.ToUniversalTime() - lastBootUp.ToUniversalTime()).ToString();
         }
     }
 }
