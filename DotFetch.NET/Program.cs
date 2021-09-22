@@ -13,6 +13,7 @@ namespace DotFetch.NET
             Console.WriteLine(InformationGenerator.HostName());
             Console.WriteLine(InformationGenerator.KernelVersion());
             Console.WriteLine(InformationGenerator.UpTime());
+Console.ReadLine();
             
         }
     }
