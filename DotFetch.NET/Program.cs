@@ -20,6 +20,7 @@ namespace DotFetch.NET
             Console.WriteLine(InformationGenerator.CheckBatteryPower());            
             Console.WriteLine(InformationGenerator.GetComputerName());            
             Console.WriteLine(InformationGenerator.GetUserName());            
+            Console.WriteLine(InformationGenerator.GetGPU());            
         }
     }
 }

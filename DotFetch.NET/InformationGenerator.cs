@@ -2,6 +2,8 @@
 using System.Management;
 using System.Net;
 using System.IO;
+using System.Diagnostics;
+using System.Threading;
 
 namespace DotFetch.NET
 {
@@ -23,6 +25,23 @@ namespace DotFetch.NET
             result = "OS: " + result.Remove(0, 10);
             return result;
         }
+
+        // get gpu information
+        public static string GetGPU()
+        {
+            string result = string.Empty;
+            ManagementObjectSearcher searcher = new("SELECT * FROM Win32_VideoController");
+            foreach (var o in searcher.Get())
+            {
+                var gpu = (ManagementObject) o;
+                result = gpu["Name"].ToString();
+                break;
+            }
+            return "GPU: " + result;
+        }
+
+        
+                
 
         public static string KernelVersion()
         {
