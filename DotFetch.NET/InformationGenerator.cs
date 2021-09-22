@@ -130,22 +130,8 @@ namespace DotFetch.NET
             return "Drive: " + freeSpace + " GB" + " / " + totalSpace + " GB";
         }
 
-        // check available battery power
-        public static string CheckBatteryPower()
-        {
-            const string query = "SELECT * FROM Win32_Battery";
-            ManagementObjectSearcher searcher = new(query);
-            foreach (ManagementObject o in searcher.Get())
-            {
-                var battery = (ManagementObject) o;
-                var batteryLife = battery["EstimatedChargeRemaining"];
-                return "Battery: " + batteryLife + "%";
-            }
-            return "Battery: Unknown";
-        }
-
-        // Check if battery is charging
-        public static string CheckBatteryCharging()
+        // AC power status
+        private static string CheckBatteryCharging()
         {
             const string query = "SELECT * FROM Win32_Battery";
             ManagementObjectSearcher searcher = new(query);
@@ -164,7 +150,19 @@ namespace DotFetch.NET
             }
             return "Battery: Unknown";
         }
-        
 
+        // check available battery power
+        public static string CheckBatteryPower()
+        {
+            const string query = "SELECT * FROM Win32_Battery";
+            ManagementObjectSearcher searcher = new(query);
+            foreach (ManagementObject o in searcher.Get())
+            {
+                var battery = (ManagementObject) o;
+                var batteryLife = battery["EstimatedChargeRemaining"];
+                return "Battery: " + batteryLife + "% , " + CheckBatteryCharging();
+            }
+            return "Battery: Unknown";
+        }
     }
 }
