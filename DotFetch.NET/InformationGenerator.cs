@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Management;
-
+using System.Net;
 
 namespace DotFetch.NET
 {
@@ -59,9 +59,9 @@ namespace DotFetch.NET
         public static string CPUInfo()
         {
             const string query = "select * from Win32_Processor";
-            ManagementObjectCollection moc = new ManagementObjectSearcher(query).Get();
+            ManagementObjectCollection objectCollection = new ManagementObjectSearcher(query).Get();
             
-            foreach (ManagementObject obj in moc)
+            foreach (ManagementObject obj in objectCollection)
             {
                 try
                 {
@@ -94,7 +94,7 @@ namespace DotFetch.NET
             const string url = "http://www.google.com";
             try
             {
-                using var client = new System.Net.WebClient();
+                using var client = new WebClient();
                 using var stream = client.OpenRead(url);
                 return "Internet: Connected";
             }
