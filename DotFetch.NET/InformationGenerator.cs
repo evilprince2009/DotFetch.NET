@@ -29,8 +29,9 @@ namespace DotFetch.NET
         // get gpu information
         public static string GetGPU()
         {
+            const string query = "SELECT * FROM Win32_VideoController";
             string result = string.Empty;
-            ManagementObjectSearcher searcher = new("SELECT * FROM Win32_VideoController");
+            ManagementObjectSearcher searcher = new(query);
             foreach (var o in searcher.Get())
             {
                 var gpu = (ManagementObject) o;
@@ -195,5 +196,15 @@ namespace DotFetch.NET
         {
             return "User Name: " + Environment.UserName;
         }
+
+        // get ps version
+        public static string GetPSVersion()
+        {
+            return "PowerShell: " + Environment.Version;
+        }
+
+        // get installed packages
+        
+
     }
 }
