@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Management;
-using System.Diagnostics;
+
 
 namespace DotFetch.NET
 {
@@ -8,9 +8,10 @@ namespace DotFetch.NET
     {
         public static string GetOS()
         {
+            const string query = "SELECT Caption FROM Win32_OperatingSystem";
             string result = string.Empty;
             ManagementObjectSearcher searcher =
-                new ("SELECT Caption FROM Win32_OperatingSystem");
+                new(query);
             foreach (var o in searcher.Get())
             {
                 var os = (ManagementObject) o;
@@ -29,7 +30,9 @@ namespace DotFetch.NET
 
         public static string HostName()
         {
-            ManagementObjectSearcher searcher = new ("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
+            const string scope = "root\\CIMV2";
+            const string query = "SELECT * FROM Win32_BaseBoard";
+            ManagementObjectSearcher searcher = new(scope, query);
             foreach (ManagementObject informationBuffer in searcher.Get())
             {
                 return "Host: " + informationBuffer.GetPropertyValue("Manufacturer").ToString();
@@ -40,7 +43,8 @@ namespace DotFetch.NET
 
         public static string UpTime()
         {
-            ManagementObject marker = new (@"\\.\root\cimv2:Win32_OperatingSystem=@");
+            const string path = @"\\.\root\cimv2:Win32_OperatingSystem=@";
+            ManagementObject marker = new(path);
             DateTime lastBootUp = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
             var timeStamp = DateTime.Now.ToUniversalTime() - lastBootUp.ToUniversalTime();
             string[] duration =
@@ -50,6 +54,23 @@ namespace DotFetch.NET
             };
 
             return string.Join(" ", duration);
+        }
+
+        public static string CPUInfo()
+        {
+            const string query = "select * from Win32_Processor";
+            ManagementObjectCollection moc = new ManagementObjectSearcher(query).Get();
+            
+            foreach (ManagementObject obj in moc)
+            {
+                try
+                {
+                    return "CPU: " + obj["Name"].ToString();
+                }
+                catch {}
+            }
+
+            return "Couldn't detect !";
         }
     }
 }

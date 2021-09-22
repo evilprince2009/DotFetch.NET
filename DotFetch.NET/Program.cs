@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace DotFetch.NET
 {
@@ -9,9 +6,14 @@ namespace DotFetch.NET
     {
         static void Main()
         {
-            
             Console.WriteLine("                                 =========> Wellcome || Windows PowerShell <=========");
+            Console.WriteLine(InformationGenerator.CPUInfo());
+            Console.WriteLine(InformationGenerator.HostName());
+            Console.WriteLine(InformationGenerator.GetOS());
+            Console.WriteLine(InformationGenerator.HostName());
+            Console.WriteLine(InformationGenerator.KernelVersion());
             Console.WriteLine(InformationGenerator.UpTime());
+            
         }
     }
 }
