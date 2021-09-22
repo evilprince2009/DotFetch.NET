@@ -164,5 +164,17 @@ namespace DotFetch.NET
             }
             return "Battery: Unknown";
         }
+
+        // Get computer name
+        public static string GetComputerName()
+        {
+            return "Computer Name: " + Environment.MachineName;
+        }
+
+        // Get user name
+        public static string GetUserName()
+        {
+            return "User Name: " + Environment.UserName;
+        }
     }
 }

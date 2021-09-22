@@ -18,6 +18,8 @@ namespace DotFetch.NET
             Console.WriteLine(InformationGenerator.CheckInternetIP());
             Console.WriteLine(InformationGenerator.CheckDriveSpace());
             Console.WriteLine(InformationGenerator.CheckBatteryPower());            
+            Console.WriteLine(InformationGenerator.GetComputerName());            
+            Console.WriteLine(InformationGenerator.GetUserName());            
         }
     }
 }
