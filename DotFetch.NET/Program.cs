@@ -22,7 +22,8 @@ namespace DotFetch.NET
             Console.WriteLine(InformationGenerator.GetUserName());            
             Console.WriteLine(InformationGenerator.GetGPU());            
             Console.WriteLine(InformationGenerator.GetPSVersion());            
-            Console.WriteLine(InformationGenerator.GetInstalledPackages());            
+                      
+            Console.WriteLine(InformationGenerator.GetWindowManager());            
         }
     }
 }

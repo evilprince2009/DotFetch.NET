@@ -2,8 +2,6 @@
 using System.Management;
 using System.Net;
 using System.IO;
-using System.Diagnostics;
-using System.Threading;
 
 namespace DotFetch.NET
 {
@@ -40,9 +38,6 @@ namespace DotFetch.NET
             }
             return "GPU: " + result;
         }
-
-        
-                
 
         public static string KernelVersion()
         {
@@ -202,9 +197,5 @@ namespace DotFetch.NET
         {
             return "PowerShell: " + Environment.Version;
         }
-
-        // get installed packages
-        
-
     }
 }
