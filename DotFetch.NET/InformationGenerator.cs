@@ -25,5 +25,16 @@ namespace DotFetch.NET
         {
             return "Kernel Version: " + Environment.OSVersion.Version.ToString();
         }
+
+        public static string HostName()
+        {
+            ManagementObjectSearcher searcher = new ("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
+            foreach (ManagementObject informationBuffer in searcher.Get())
+            {
+                return "Host: " + informationBuffer.GetPropertyValue("Manufacturer").ToString();
+            }
+
+            return "Host: Unknown";
+        }
     }
 }
