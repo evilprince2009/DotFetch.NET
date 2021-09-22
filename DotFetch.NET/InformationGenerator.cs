@@ -130,17 +130,41 @@ namespace DotFetch.NET
             return "Drive: " + freeSpace + " GB" + " / " + totalSpace + " GB";
         }
 
-        // CHECK POWER STATUS
-        public static string CheckPowerStatus()
+        // check available battery power
+        public static string CheckBatteryPower()
         {
-            var query = "SELECT * FROM Win32_Battery";
+            const string query = "SELECT * FROM Win32_Battery";
             ManagementObjectSearcher searcher = new(query);
             foreach (ManagementObject o in searcher.Get())
             {
                 var battery = (ManagementObject) o;
-                var status = battery["BatteryStatus"];
-                return "Power: " + status.ToString();
+                var batteryLife = battery["EstimatedChargeRemaining"];
+                return "Battery: " + batteryLife + "%";
             }
+            return "Battery: Unknown";
         }
+
+        // Check if battery is charging
+        public static string CheckBatteryCharging()
+        {
+            const string query = "SELECT * FROM Win32_Battery";
+            ManagementObjectSearcher searcher = new(query);
+            foreach (ManagementObject o in searcher.Get())
+            {
+                var battery = (ManagementObject) o;
+                var batteryLife = battery["BatteryStatus"];
+                if (batteryLife.ToString() == "2")
+                {
+                    return "Connected";
+                }
+                else
+                {
+                    return "Unplugged";
+                }
+            }
+            return "Battery: Unknown";
+        }
+        
+
     }
 }
