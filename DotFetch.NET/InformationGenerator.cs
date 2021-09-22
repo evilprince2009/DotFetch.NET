@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Management;
 using System.Net;
+using System.IO;
 
 namespace DotFetch.NET
 {
@@ -82,8 +83,7 @@ namespace DotFetch.NET
                 var os = (ManagementObject) o;
                 var totalRam = os["TotalVisibleMemorySize"];
                 var freeRam = os["FreePhysicalMemory"];
-                var usedRam = Convert.ToInt64(totalRam) - Convert.ToInt64(freeRam);
-                return "RAM: " + usedRam + "MB / " + totalRam + "MB";
+                return "RAM: " + (Convert.ToInt64(freeRam) / (1024 * 1024)) + "GB / " + (Convert.ToInt64(totalRam) / (1024 * 1024)) + "GB";
             }
             return "RAM: Unknown";
         }
@@ -118,6 +118,28 @@ namespace DotFetch.NET
             catch
             {
                 return "IP: 127.0.0.1";
+            }
+        }
+
+        // Check C:\ drive space
+        public static string CheckDriveSpace()
+        {
+            var drive = new DriveInfo("C:\\");
+            var freeSpace = (drive.TotalFreeSpace) / (1024 * 1024 * 1024);
+            var totalSpace = (drive.TotalSize) / (1024 * 1024 * 1024);
+            return "Drive: " + freeSpace + " GB" + " / " + totalSpace + " GB";
+        }
+
+        // CHECK POWER STATUS
+        public static string CheckPowerStatus()
+        {
+            var query = "SELECT * FROM Win32_Battery";
+            ManagementObjectSearcher searcher = new(query);
+            foreach (ManagementObject o in searcher.Get())
+            {
+                var battery = (ManagementObject) o;
+                var status = battery["BatteryStatus"];
+                return "Power: " + status.ToString();
             }
         }
     }
