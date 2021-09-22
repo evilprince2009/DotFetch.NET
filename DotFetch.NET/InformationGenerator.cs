@@ -103,5 +103,22 @@ namespace DotFetch.NET
                 return "Internet: Offline";
             }
         }
+
+        // Check internet ip
+        public static string CheckInternetIP()
+        {
+            const string url = "http://checkip.dyndns.org";
+            try
+            {
+                using var client = new WebClient();
+                var html = client.DownloadString(url);
+                var ip = html.Split(':')[1].Split('<')[0];
+                return "IP: " + ip.ToString();
+            }
+            catch
+            {
+                return "IP: 127.0.0.1";
+            }
+        }
     }
 }
