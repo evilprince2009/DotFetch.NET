@@ -8,35 +8,26 @@ namespace DotFetch.NET
 		{
 			List<string> LogoBuffer = new()
 			{
-				{ "                                       ```...--://+oo`" },
-				{ "                         ```...--://+oooossyyyyyyyyyy`" },
-				{ "           ```...--:/+- .osssyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ " ..--:/++ooosssyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "`yyyyyyyyyyyyyyyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ " ..--:/++ooosssyyyyyyy: -yyyyyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "           ```...--:/+- .oossyyyyyyyyyyyyyyyyyyyyyyyy`" },
-				{ "                         ```...--:/++ooosssyyyyyyyyyy`" },
-				{ "                                       ```...--::/+oo`" }
-
-			};
+                { "                         ....::::       " },
+                { "                 ....::::::::::::       " },
+                { "        ....:::: ::::::::::::::::       " },
+                { "....:::::::::::: ::::::::::::::::       " },
+                { ":::::::::::::::: ::::::::::::::::       " },
+                { ":::::::::::::::: ::::::::::::::::       " },
+                { ":::::::::::::::: ::::::::::::::::       " },
+                { ":::::::::::::::: ::::::::::::::::       " },
+                { "................ ................       " },
+                { ":::::::::::::::: ::::::::::::::::       " },
+                { ":::::::::::::::: ::::::::::::::::       " },
+                { ":::::::::::::::: ::::::::::::::::       " },
+                { "'''':::::::::::: ::::::::::::::::       " },
+                { "        '''':::: :EVILPRINCE2009:       " },
+                { "                 ''''::::::::::::       " },
+                { "                         ''''::::       " },
+                { "                                        " },
+                { "                                        " },
+                { "                                        " }
+            };
 
 			return LogoBuffer;
 		}
