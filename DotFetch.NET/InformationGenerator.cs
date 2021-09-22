@@ -21,6 +21,9 @@ namespace DotFetch.NET
             return result;
         }
 
-        
+        public static string KernelVersion()
+        {
+            return "Kernel Version: " + Environment.OSVersion.Version.ToString();
+        }
     }
 }
