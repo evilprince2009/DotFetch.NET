@@ -4,7 +4,7 @@ namespace DotFetch.NET
 {
     public class LogoRenderer
     {
-        public static List<string> Windows()
+        public static List<string> WindowsX()
         {
             List<string> LogoBuffer = new()
             {
