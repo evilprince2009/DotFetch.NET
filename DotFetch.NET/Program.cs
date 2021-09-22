@@ -14,6 +14,7 @@ namespace DotFetch.NET
             Console.WriteLine(InformationGenerator.KernelVersion());
             Console.WriteLine(InformationGenerator.UpTime());
             Console.WriteLine(InformationGenerator.AvailableRAM());
+            Console.WriteLine(InformationGenerator.CheckInternetConnection());
             
         }
     }

@@ -88,6 +88,23 @@ namespace DotFetch.NET
             return "RAM: Unknown";
         }
 
-        
+        // check internet connection
+        public static string CheckInternetConnection()
+        {
+            try
+            {
+                using (var client = new System.Net.WebClient())
+                {
+                    using (var stream = client.OpenRead("http://www.google.com"))
+                    {
+                        return "Internet: Connected";
+                    }
+                }
+            }
+            catch
+            {
+                return "Internet: Offline";
+            }
+        }
     }
 }
