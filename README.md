@@ -13,7 +13,7 @@ _DotFetch.NET_ is basically .NET port of _[DotFetch](https://github.com/evilprin
 - Clone DotFetch.NET source code and build it using Visual Studio.
 - Build DotFetch.NET using `dotnet restore` and `dotnet build` command respectively on command line.
 
-_** Note:- .NET 5.0 is required to build DotFetch.NET **_
+_**Note:- .NET 5.0 is required to build DotFetch.NET**_
 
 ### [Download Binary](https://github.com/evilprince2009/DotFetch.NET)
 
