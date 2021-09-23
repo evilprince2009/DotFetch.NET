@@ -1,7 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Management;
 using System.Net;
-using System.IO;
 
 namespace DotFetch.NET
 {
@@ -13,9 +13,8 @@ namespace DotFetch.NET
             string result = string.Empty;
             ManagementObjectSearcher searcher =
                 new(query);
-            foreach (var o in searcher.Get())
+            foreach (ManagementObject os in searcher.Get())
             {
-                var os = (ManagementObject) o;
                 result = os["Caption"].ToString();
                 break;
             }
@@ -30,9 +29,8 @@ namespace DotFetch.NET
             const string query = "SELECT * FROM Win32_VideoController";
             string result = string.Empty;
             ManagementObjectSearcher searcher = new(query);
-            foreach (var o in searcher.Get())
+            foreach (ManagementObject gpu in searcher.Get())
             {
-                var gpu = (ManagementObject) o;
                 result = gpu["Name"].ToString();
                 break;
             }
@@ -41,7 +39,7 @@ namespace DotFetch.NET
 
         public static string KernelVersion()
         {
-            return "Kernel Version: " + Environment.OSVersion.Version.ToString();
+            return "Kernel Version: " + Environment.OSVersion.Version;
         }
 
         public static string HostName()
@@ -51,7 +49,7 @@ namespace DotFetch.NET
             ManagementObjectSearcher searcher = new(scope, query);
             foreach (ManagementObject informationBuffer in searcher.Get())
             {
-                return "Host: " + informationBuffer.GetPropertyValue("Manufacturer").ToString();
+                return "Host: " + informationBuffer.GetPropertyValue("Manufacturer");
             }
 
             return "Host: Unknown";
@@ -81,7 +79,7 @@ namespace DotFetch.NET
             {
                 try
                 {
-                    return "CPU: " + obj["Name"].ToString();
+                    return "CPU: " + obj["Name"];
                 }
                 catch {}
             }
@@ -128,7 +126,7 @@ namespace DotFetch.NET
                 using var client = new WebClient();
                 var html = client.DownloadString(url);
                 var ip = html.Split(':')[1].Split('<')[0];
-                return "IP: " + ip.ToString();
+                return "IP: " + ip;
             }
             catch
             {
@@ -150,18 +148,15 @@ namespace DotFetch.NET
         {
             const string query = "SELECT * FROM Win32_Battery";
             ManagementObjectSearcher searcher = new(query);
-            foreach (ManagementObject o in searcher.Get())
+            foreach (ManagementObject battery in searcher.Get())
             {
-                var battery = (ManagementObject) o;
                 var batteryLife = battery["BatteryStatus"];
                 if (batteryLife.ToString() == "2")
                 {
                     return "Connected";
                 }
-                else
-                {
-                    return "Unplugged";
-                }
+
+                return "Unplugged";
             }
             return "Unknown";
         }
@@ -171,9 +166,8 @@ namespace DotFetch.NET
         {
             const string query = "SELECT * FROM Win32_Battery";
             ManagementObjectSearcher searcher = new(query);
-            foreach (ManagementObject o in searcher.Get())
+            foreach (ManagementObject battery in searcher.Get())
             {
-                var battery = (ManagementObject) o;
                 var batteryLife = battery["EstimatedChargeRemaining"];
                 return "Power: " + batteryLife + "% , " + CheckBatteryCharging();
             }
