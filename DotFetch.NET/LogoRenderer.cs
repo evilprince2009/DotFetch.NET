@@ -4,7 +4,42 @@ namespace DotFetch.NET
 {
     public class LogoRenderer
     {
-        public static List<string> WindowsX()
+        
+
+        private static List<string> DefaultDevil()
+        {
+            List<string> AsciiArt = new()
+            {
+                { @"                                                                       " },
+                { @"             (`)..                                    ,.-')            " },
+                { @"              (',.)-..                            ,.-(..`)             " },
+                { @"               (,.' ,.)-..                    ,.-(. `.. )              " },
+                { @"                (,.' ..' .)-..            ,.-( `.. `.. )               " },
+                { @"                 (,.' ,.'  ..')-.     ,.-( `. `.. `.. )                " },
+                { @"                  (,.'  ,.' ,.'  )-.-('   `. `.. `.. )                 " },
+                { @"                   ( ,.' ,.'    _== ==_     `.. `.. )                  " },
+                { @"                    ( ,.'   _==' ~  ~  `==_    `.. )                   " },
+                { @"                     \  _=='   ----..----  `==_   )                    " },
+                { @"                  ,.-:    ,----___.  .___----.    -..                  " },
+                { @"              ,.-'   (   _--====_  \/  _====--_   )  `-..              " },
+                { @"          ,.-'   .__.'`.  `-_I0_-'    `-_0I_-'  .'`.__.  `-..          " },
+                { @"      ,.-'.'   .'      (          |  |          )      `.   `.-..      " },
+                { @"  ,.-'    :    `___--- '`.__.    / __ \    .__.' `---___'    :   `-..  " },
+                { @"-'_______`-EVILPRINCE2009'__ \  (O)  (O)  / __`______________-'______`-" },
+                { @"                            \ . _  __  _ . /                           " },
+                { @"                             \ `V-'  `-V' |                            " },
+                { @"                              | \ \ | /  /                             " },
+                { @"                               V \ ~| ~/V                              " },
+                { @"                                |  \  /|                               " },
+                { @"                                 \~ | V                                " },
+                { @"                                  \  |                                 " },
+                { @"                                   VV                                  " }
+            };
+
+            return AsciiArt;
+        }
+
+        private static List<string> WindowsX()
         {
             List<string> AsciiArt = new()
             {
@@ -32,7 +67,7 @@ namespace DotFetch.NET
             return AsciiArt;
         }
 
-        public static List<string> WindowsXI()
+        private static List<string> WindowsXI()
         {
             List<string> AsciiArt = new()
             {

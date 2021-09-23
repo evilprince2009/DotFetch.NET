@@ -31,10 +31,10 @@ namespace DotFetch.NET
         public static List<string> CombinedInformation()
         {
             List<string> combinedBuffer = new();
-            List<string> balancedLogo = LogoRenderer.WindowsX();
+            List<string> balancedLogo = LogoRenderer.LogoAscii();
             List<string> balancedInfo = OSInformationBuffer();
 
-            int logoHeight = LogoRenderer.WindowsX().Count;
+            int logoHeight = LogoRenderer.LogoAscii().Count;
             int informationHeight = OSInformationBuffer().Count;
             int heightDifference = Math.Abs(logoHeight - informationHeight);
 
