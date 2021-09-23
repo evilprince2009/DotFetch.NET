@@ -93,14 +93,14 @@ namespace DotFetch.NET
         {
             const string query = "SELECT * FROM Win32_OperatingSystem";
             ManagementObjectSearcher searcher = new(query);
-            foreach (ManagementObject o in searcher.Get())
+            foreach (ManagementObject os in searcher.Get())
             {
-                var os = (ManagementObject) o;
+                
                 var totalRam = os["TotalVisibleMemorySize"];
                 var freeRam = os["FreePhysicalMemory"];
-                return "RAM: " + (Convert.ToInt64(freeRam) / (1024 * 1024)) + "GB / " + (Convert.ToInt64(totalRam) / (1024 * 1024)) + "GB";
+                return "Memory: " + (Convert.ToInt64(freeRam) / (1024 * 1024)) + "GB / " + (Convert.ToInt64(totalRam) / (1024 * 1024)) + "GB";
             }
-            return "RAM: Unknown";
+            return "Memory: Unknown";
         }
 
         // check internet connection
@@ -142,7 +142,7 @@ namespace DotFetch.NET
             var drive = new DriveInfo("C:\\");
             var freeSpace = (drive.TotalFreeSpace) / (1024 * 1024 * 1024);
             var totalSpace = (drive.TotalSize) / (1024 * 1024 * 1024);
-            return "Drive: " + freeSpace + " GB" + " / " + totalSpace + " GB";
+            return "Disk (C:): " + freeSpace + " GB" + " / " + totalSpace + " GB";
         }
 
         // AC power status
@@ -181,13 +181,13 @@ namespace DotFetch.NET
         }
 
         // Get computer name
-        public static string GetComputerName()
+        private static string GetComputerName()
         {
             return "Computer Name: " + Environment.MachineName;
         }
 
         // Get user name
-        public static string GetUserName()
+        private static string GetUserName()
         {
             return "User Name: " + Environment.UserName;
         }
@@ -196,6 +196,11 @@ namespace DotFetch.NET
         public static string GetPSVersion()
         {
             return "PowerShell: " + Environment.Version;
+        }
+
+        public static string UserAndComputerName()
+        {
+            return GetUserName() + "@" + GetComputerName();
         }
     }
 }
