@@ -5,7 +5,7 @@ namespace DotFetch.NET
 {
     public class Combiner
     {
-        public static List<string> OSInformationBuffer()
+        private static List<string> OSInformationBuffer()
         {
             List<string> information = new();
             information.Add(InformationGenerator.UserAndComputerName());
@@ -33,6 +33,7 @@ namespace DotFetch.NET
             List<string> combinedBuffer = new();
             List<string> balancedLogo = LogoRenderer.WindowsX();
             List<string> balancedInfo = OSInformationBuffer();
+
             int logoHeight = LogoRenderer.WindowsX().Count;
             int informationHeight = OSInformationBuffer().Count;
             int heightDifference = Math.Abs(logoHeight - informationHeight);
@@ -52,12 +53,9 @@ namespace DotFetch.NET
                 }
             }
 
-            var balancedLogoArray = balancedLogo.ToArray();
-            var balancedInfoArray = balancedInfo.ToArray();
-
-            for (int i = 0; i < balancedLogoArray.Length; i++)
+            for (int i = 0; i < balancedLogo.Count; i++)
             {
-                combinedBuffer.Add($"{balancedLogoArray[i]} {balancedInfoArray[i]}");
+                combinedBuffer.Add($"{balancedLogo[i]} {balancedInfo[i]}");
             }
 
             return combinedBuffer;
