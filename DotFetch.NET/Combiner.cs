@@ -24,7 +24,6 @@ namespace DotFetch.NET
             information.Add(InformationGenerator.CheckInternetIP());
             information.Add(InformationGenerator.CheckBatteryPower());
 
-
             return information;
         }
 

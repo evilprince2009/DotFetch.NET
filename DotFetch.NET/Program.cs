@@ -6,6 +6,7 @@ namespace DotFetch.NET
     {
         static void Main()
         {
+            Console.WriteLine("yo");
             foreach (string line in Combiner.CombinedInformation())
             {
                 Console.WriteLine(line);
