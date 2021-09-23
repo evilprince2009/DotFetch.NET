@@ -22,8 +22,8 @@ _**Note:- .NET 5.0 is required to build DotFetch.NET**_
 Follow these simple steps to install _DotFetch.NET_:
 
 - Set your execution policy to RemoteSigned by running `Set-ExecutionPolicy RemoteSigned` on an Administrative instance of PowerShell.
-- Download the _**DotFetch.Binary.rar**_ file from _**[here](https://github.com/evilprince2009/DotFetch.NET/releases/tag/v1.0.0)**_ and extract the _**DotFetch Binary**_ folder. This folder contains all the required binary files to run _DotFetch.NET_.
-- Move the _DotFetch Binary_ folder somewhere you prefer. For example, you can move it to your `C:\Program Files` folder. Don't delete or rename any file in the _DotFetch Binary_ folder.
+- Download the `DotFetch.Binary.rar` file from _**[here](https://github.com/evilprince2009/DotFetch.NET/releases/tag/v1.0.0)**_ and extract the `DotFetch Binary` folder. This folder contains all the required binary files to run `DotFetch.NET`.
+- Move the `DotFetch Binary` folder somewhere you prefer. For example, you can move it to your `C:\Program Files` folder. Don't delete or rename any file in the _DotFetch Binary_ folder.
 - Put the directory path till `DotFetch Binary` folder into path under Environment Variables. For example, if you moved the `DotFetch Binary` folder to `C:\Program Files\` , you need to put `C:\Program Files\DotFetch Binary` into path under Environment Variables.
 - Now open PowerShell & type `notepad $profile`.
 - Put below line inside the file and save.
