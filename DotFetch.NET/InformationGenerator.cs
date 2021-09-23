@@ -9,6 +9,7 @@ namespace DotFetch.NET
 {
     public class InformationGenerator
     {
+        // Getting Operating System
         public static string GetOS()
         {
             const string query = "SELECT Caption FROM Win32_OperatingSystem";
@@ -21,11 +22,11 @@ namespace DotFetch.NET
                 break;
             }
 
-            result = "OS: " + result.Remove(0, 10);
+            result = $"OS: {result.Remove(0, 10)}";
             return result;
         }
 
-        // get gpu information
+        // Getting GPU information
         public static string GetGPU()
         {
             const string query = "SELECT * FROM Win32_VideoController";
@@ -36,14 +37,16 @@ namespace DotFetch.NET
                 result = gpu["Name"].ToString();
                 break;
             }
-            return "GPU: " + result;
+            return $"GPU: {result}";
         }
 
+        // Getting Kernel build
         public static string KernelVersion()
         {
-            return "Kernel Version: " + Environment.OSVersion.Version;
+            return $"Kernel Version: {Environment.OSVersion.Version}";
         }
 
+        // Getting Host Manufacturer
         public static string HostName()
         {
             const string scope = "root\\CIMV2";
@@ -51,59 +54,58 @@ namespace DotFetch.NET
             ManagementObjectSearcher searcher = new(scope, query);
             foreach (ManagementObject informationBuffer in searcher.Get())
             {
-                return "Host: " + informationBuffer.GetPropertyValue("Manufacturer");
+                if (informationBuffer != null) return $"Host: {informationBuffer.GetPropertyValue("Manufacturer")}";
             }
 
             return "Host: Unknown";
         }
 
+        // Getting machine uptime
         public static string UpTime()
         {
             const string path = @"\\.\root\cimv2:Win32_OperatingSystem=@";
             ManagementObject marker = new(path);
             DateTime lastBootUp = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
             var timeStamp = DateTime.Now.ToUniversalTime() - lastBootUp.ToUniversalTime();
-            string[] duration =
-            {
-                "Uptime:", timeStamp.Days.ToString(), "Days", timeStamp.Hours.ToString(), "Hours",
-                timeStamp.Minutes.ToString(), "Minutes"
-            };
-
-            return string.Join(" ", duration);
+            return
+                $"Uptime: {timeStamp.Days} Days {timeStamp.Hours} Hours {timeStamp.Minutes} Minutes";
         }
 
+        // Checking CPU information
         public static string CPUInfo()
         {
             const string query = "select * from Win32_Processor";
             ManagementObjectCollection objectCollection = new ManagementObjectSearcher(query).Get();
             
-            foreach (ManagementObject obj in objectCollection)
+            foreach (ManagementObject item in objectCollection)
             {
                 try
                 {
-                    return "CPU: " + obj["Name"];
+                    return $"CPU: {item["Name"]}";
                 }
                 catch {}
             }
 
             return "Couldn't detect !";
         }
+
         // CALCULATE AVAILABLE RAM
         public static string AvailableRAM()
         {
+            const long divider = 1024 * 1024;
             const string query = "SELECT * FROM Win32_OperatingSystem";
             ManagementObjectSearcher searcher = new(query);
             foreach (ManagementObject os in searcher.Get())
             {
-                
                 var totalRam = os["TotalVisibleMemorySize"];
                 var freeRam = os["FreePhysicalMemory"];
-                return "Memory: " + (Convert.ToInt64(freeRam) / (1024 * 1024)) + "GB / " + (Convert.ToInt64(totalRam) / (1024 * 1024)) + "GB";
+                string diskUsage = $"{Convert.ToInt64(freeRam) / divider}GB / {Convert.ToInt64(totalRam) / divider}GB";
+                return $"Memory: {diskUsage}";
             }
             return "Memory: Unknown";
         }
 
-        // check internet connection
+        // Check internet connection
         public static string CheckInternetConnection()
         {
             const string url = "http://www.google.com";
@@ -119,7 +121,7 @@ namespace DotFetch.NET
             }
         }
 
-        // Check internet ip
+        // Check Internet IP
         public static string CheckInternetIP()
         {
             const string url = "http://checkip.dyndns.org";
@@ -128,7 +130,7 @@ namespace DotFetch.NET
                 using var client = new WebClient();
                 var html = client.DownloadString(url);
                 var ip = html.Split(':')[1].Split('<')[0];
-                return "IP: " + ip;
+                return $"IP: {ip}";
             }
             catch
             {
@@ -136,7 +138,7 @@ namespace DotFetch.NET
             }
         }
 
-        // Check C:\ drive space
+        // Check C:\ Drive space
         public static string CheckDriveSpace()
         {
             const long divider = 1024 * 1024 * 1024;
@@ -165,7 +167,7 @@ namespace DotFetch.NET
             return "Unknown";
         }
 
-        // check available battery power
+        // Check available battery power
         public static string CheckBatteryPower()
         {
             const string query = "SELECT * FROM Win32_Battery";
@@ -173,7 +175,7 @@ namespace DotFetch.NET
             foreach (ManagementObject battery in searcher.Get())
             {
                 var batteryLife = battery["EstimatedChargeRemaining"];
-                return "Power: " + batteryLife + "% , " + CheckBatteryCharging();
+                return $"Power: {batteryLife}% , {CheckBatteryCharging()}";
             }
             return "Power: Unknown";
         }
@@ -201,10 +203,13 @@ namespace DotFetch.NET
             return $"{GetUserName()}@{GetComputerName()}";
         }
 
-        // Check if powershell is running as admin
+        // Check if Powershell is running as Admin
         public static string CheckAdmin()
         {
-            return "Running as Admin: " + (new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator) ? "Yes" : "No");
+            string role = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator)
+                ? "Yes"
+                : "No";
+            return $"Running as Admin: {role}";
         }
     }
 }
