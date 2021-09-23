@@ -20,7 +20,7 @@ namespace DotFetch.NET
                 logo = DefaultDevil();
             }
 
-            return logo;
+            return DefaultDevil();
         }
 
         private static List<string> CrossSkull()
@@ -56,7 +56,6 @@ namespace DotFetch.NET
         {
             List<string> AsciiArt = new()
             {
-                { @"                                                                        " },
                 { @"             (`)..                                    ,.-')             " },
                 { @"              (',.)-..                            ,.-(..`)              " },
                 { @"               (,.' ,.)-..                    ,.-(. `.. )               " },
