@@ -6,13 +6,10 @@ namespace DotFetch.NET
     {
         static void Main()
         {
-            //foreach (string line in Combiner.CombinedInformation())
-            //{
-            //    Console.WriteLine(line);
-            //}
-
-            var text = "Windows 10";
-            Console.WriteLine(text.ToLower());
+            foreach (string line in Combiner.CombinedInformation())
+            {
+                Console.WriteLine(line);
+            }
         }
     }
 }

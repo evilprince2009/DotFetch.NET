@@ -4,7 +4,24 @@ namespace DotFetch.NET
 {
     public class LogoRenderer
     {
-        
+        public static List<string> LogoAscii()
+        {
+            List<string> logo = null;
+            if (InformationGenerator.GetOS().ToLower().Contains("windows 10"))
+            {
+                logo = WindowsX();
+            }
+            else if (InformationGenerator.GetOS().ToLower().Contains("windows 11"))
+            {
+                logo = WindowsXI();
+            }
+            else
+            {
+                logo = DefaultDevil();
+            }
+
+            return logo;
+        }
 
         private static List<string> DefaultDevil()
         {
