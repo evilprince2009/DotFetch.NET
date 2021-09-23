@@ -6,7 +6,7 @@ namespace DotFetch.NET
     {
         public static List<string> LogoAscii()
         {
-            List<string> logo = null;
+            List<string> logo;
             if (InformationGenerator.GetOS().ToLower().Contains("windows 10"))
             {
                 logo = WindowsX();

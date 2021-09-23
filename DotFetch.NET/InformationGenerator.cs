@@ -142,7 +142,7 @@ namespace DotFetch.NET
         public static string CheckDriveSpace()
         {
             const long divider = 1024 * 1024 * 1024;
-            var drive = new DriveInfo("C:\\");
+            var drive = new DriveInfo(@"C:\");
             var freeSpace = (drive.TotalFreeSpace) / divider;
             var totalSpace = (drive.TotalSize) / divider;
             var used = (totalSpace - freeSpace) * 100 / totalSpace;
