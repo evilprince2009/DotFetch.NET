@@ -163,7 +163,7 @@ namespace DotFetch.NET
                     return "Unplugged";
                 }
             }
-            return "Battery: Unknown";
+            return "Unknown";
         }
 
         // check available battery power
@@ -175,9 +175,9 @@ namespace DotFetch.NET
             {
                 var battery = (ManagementObject) o;
                 var batteryLife = battery["EstimatedChargeRemaining"];
-                return "Battery: " + batteryLife + "% , " + CheckBatteryCharging();
+                return "Power: " + batteryLife + "% , " + CheckBatteryCharging();
             }
-            return "Battery: Unknown";
+            return "Power: Unknown";
         }
 
         // Get computer name
