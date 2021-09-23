@@ -144,7 +144,6 @@ namespace DotFetch.NET
             var freeSpace = (drive.TotalFreeSpace) / divider;
             var totalSpace = (drive.TotalSize) / divider;
             var used = (totalSpace - freeSpace) * 100 / totalSpace;
-            // return "Disk (C:): " + freeSpace + "GB" + " / " + totalSpace + "GB " + $"({used}% used)";
             return $"Disk (C:): {freeSpace}GB / {totalSpace}GB ({used}% used)";
         }
 
@@ -199,7 +198,8 @@ namespace DotFetch.NET
 
         public static string UserAndComputerName()
         {
-            return GetUserName() + "@" + GetComputerName();
+            // return GetUserName() + "@" + GetComputerName();
+            return $"{GetUserName()}@{GetComputerName()}";
         }
 
         // Check if powershell is running as admin
