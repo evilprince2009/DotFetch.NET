@@ -19,7 +19,7 @@ _**Note:- .NET 5.0 is required to build DotFetch.NET**_
 
 ### Installation
 
-Follow these simple steps to install _DotFetch.NET_:
+Follow these simple steps to install _**DotFetch.NET**_:
 
 - Set your execution policy to RemoteSigned by running `Set-ExecutionPolicy RemoteSigned` on an Administrative instance of PowerShell.
 - Download the `DotFetch.Binary.rar` file from _**[here](https://github.com/evilprince2009/DotFetch.NET/releases/tag/v1.0.0)**_ and extract the `DotFetch Binary` folder. This folder contains all the required binary files to run `DotFetch.NET`.
