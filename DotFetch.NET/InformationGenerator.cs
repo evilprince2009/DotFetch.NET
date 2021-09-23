@@ -2,6 +2,7 @@
 using System.IO;
 using System.Management;
 using System.Net;
+using System.Security.Principal;
 
 namespace DotFetch.NET
 {
@@ -195,6 +196,12 @@ namespace DotFetch.NET
         public static string UserAndComputerName()
         {
             return GetUserName() + "@" + GetComputerName();
+        }
+
+        // Check if powershell is running as admin
+        public static string CheckAdmin()
+        {
+            return "Admin: " + (new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator) ? "Yes" : "No");
         }
     }
 }
