@@ -139,10 +139,13 @@ namespace DotFetch.NET
         // Check C:\ drive space
         public static string CheckDriveSpace()
         {
+            const long divider = 1024 * 1024 * 1024;
             var drive = new DriveInfo("C:\\");
-            var freeSpace = (drive.TotalFreeSpace) / (1024 * 1024 * 1024);
-            var totalSpace = (drive.TotalSize) / (1024 * 1024 * 1024);
-            return "Disk (C:): " + freeSpace + " GB" + " / " + totalSpace + " GB";
+            var freeSpace = (drive.TotalFreeSpace) / divider;
+            var totalSpace = (drive.TotalSize) / divider;
+            var used = (totalSpace - freeSpace) * 100 / totalSpace;
+            // return "Disk (C:): " + freeSpace + "GB" + " / " + totalSpace + "GB " + $"({used}% used)";
+            return $"Disk (C:): {freeSpace}GB / {totalSpace}GB ({used}% used)";
         }
 
         // AC power status

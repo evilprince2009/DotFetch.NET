@@ -7,6 +7,8 @@ namespace DotFetch.NET
         public static List<string> InformationBuffer()
         {
             List<string> information = new();
+            information.Add(InformationGenerator.UserAndComputerName());
+            information.Add("--------------------------");
             information.Add(InformationGenerator.GetOS());
             information.Add(InformationGenerator.KernelVersion());
             information.Add(InformationGenerator.HostName());
