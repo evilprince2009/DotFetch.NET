@@ -38,4 +38,4 @@ DotFetch.NET
 
 You can go through this _**[Repository](https://github.com/evilprince2009/Windows-Terminal-Customization)**_ to customize your Terminal.
 
-#### [Ibne Nahian](https://evilprince2009.netlify.app/)
+### [Ibne Nahian](https://evilprince2009.netlify.app/)
