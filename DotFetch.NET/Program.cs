@@ -19,6 +19,7 @@ namespace DotFetch.NET
             Console.WriteLine(InformationGenerator.CheckDriveSpace());
             Console.WriteLine(InformationGenerator.CheckBatteryPower());            
             Console.WriteLine(InformationGenerator.UserAndComputerName());            
+            Console.WriteLine(InformationGenerator.CheckAdmin());            
                         
             Console.WriteLine(InformationGenerator.GetGPU());            
             Console.WriteLine(InformationGenerator.GetPSVersion());

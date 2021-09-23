@@ -4,6 +4,7 @@ using System.Management;
 using System.Net;
 using System.Security.Principal;
 
+
 namespace DotFetch.NET
 {
     public class InformationGenerator
@@ -201,7 +202,7 @@ namespace DotFetch.NET
         // Check if powershell is running as admin
         public static string CheckAdmin()
         {
-            return "Admin: " + (new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator) ? "Yes" : "No");
+            return "Running as Admin: " + (new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator) ? "Yes" : "No");
         }
     }
 }
