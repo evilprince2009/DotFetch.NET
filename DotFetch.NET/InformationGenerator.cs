@@ -111,11 +111,11 @@ namespace DotFetch.NET
             {
                 using var client = new WebClient();
                 using var stream = client.OpenRead(url);
-                return "Internet: Connected";
+                return "Internet Access: Connected";
             }
             catch
             {
-                return "Internet: Offline";
+                return "Internet Access: Offline";
             }
         }
 
@@ -183,13 +183,13 @@ namespace DotFetch.NET
         // Get computer name
         private static string GetComputerName()
         {
-            return "Computer Name: " + Environment.MachineName;
+            return Environment.MachineName;
         }
 
         // Get user name
         private static string GetUserName()
         {
-            return "User Name: " + Environment.UserName;
+            return Environment.UserName;
         }
 
         // get ps version
