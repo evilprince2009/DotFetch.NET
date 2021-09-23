@@ -38,7 +38,7 @@ DotFetch.NET
 
 - If you find any bug in _**DotFetch.NET**_ , you are requested to submit a issue with error messages and diagnostic information.
 
-### If you want to look you Terminal beautiful
+### If you want to look you Terminal even more beautiful
 
 You can go through this _**[Repository](https://github.com/evilprince2009/Windows-Terminal-Customization)**_ to customize your Terminal.
 
