@@ -198,7 +198,6 @@ namespace DotFetch.NET
 
         public static string UserAndComputerName()
         {
-            // return GetUserName() + "@" + GetComputerName();
             return $"{GetUserName()}@{GetComputerName()}";
         }
 
