@@ -59,5 +59,7 @@ namespace DotFetch.NET
 
             return combinedBuffer;
         }
+
+        // Author: Ibne Nahian (evilprince2009)
     }
 }

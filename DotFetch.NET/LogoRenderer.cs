@@ -139,5 +139,7 @@ namespace DotFetch.NET
 
             return AsciiArt;
         }
+        // Logo & Ascii Art
+        // Author: Ibne Nahian (evilprince2009)
     }
 }

@@ -149,6 +149,9 @@ namespace DotFetch.NET
             return $"Disk (C:): {freeSpace}GB / {totalSpace}GB ({used}% used)";
         }
 
+        // Information generator
+        // Author: Ibne Nahian (evilprince2009)
+
         // AC power status
         private static string CheckBatteryCharging()
         {
