@@ -63,3 +63,9 @@ namespace DotFetch.NET.Assets
         // Author: Ibne Nahian (evilprince2009)
     }
 }
+
+/* _______ ____
+  | __/ _ \| __|
+  | _| (_) | _|
+  |___\___/|_|
+*/
