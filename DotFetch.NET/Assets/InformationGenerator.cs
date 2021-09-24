@@ -2,8 +2,11 @@
 using System.IO;
 using System.Management;
 using System.Net;
+using System.Net.Http;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Security.Principal;
+using System.Threading.Tasks;
 
 namespace DotFetch.NET.Assets
 {
@@ -115,21 +118,14 @@ namespace DotFetch.NET.Assets
         // Check Internet IP
         public static string CheckInternetIP()
         {
-            const string localhost = "127.0.0.1";
-            if (CheckInternetConnection() == "Internet Access: Offline") return $"IP: {localhost}";
-            
-            const string url = "http://checkip.dyndns.org";
-            try
-            {
-                using var client = new WebClient();
-                var html = client.DownloadString(url);
-                var ip = html.Split(':')[1].Split('<')[0];
+            const string url = "https://api.ipify.org";
+            string ip = "127.0.0.1";
+            if (CheckInternetConnection() == "Internet Access: Offline")
                 return $"IP: {ip}";
-            }
-            catch
-            {
-                return $"IP: {localhost}";
-            }
+
+            HttpClient responseCapturer = new();
+            ip = responseCapturer.GetStringAsync(url).Result;
+            return $"IP: {ip}";
         }
 
         // Check C:\ Drive space
