@@ -20,7 +20,16 @@ namespace DotFetch.NET
                 logo = DefaultDevil();
             }
 
-            return DefaultDevil();
+            /*
+                You can change this return value to render a different logo.
+                You use these values listed below insted of logo.
+
+                - WindowsX()
+                - WindowsXI()
+                - CrossSkull()
+                - DefaultDevil()
+            */
+            return logo;
         }
 
         private static List<string> CrossSkull()
