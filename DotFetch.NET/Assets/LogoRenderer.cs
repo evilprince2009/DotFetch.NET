@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DotFetch.NET
+namespace DotFetch.NET.Assets
 {
     public class LogoRenderer
     {
@@ -17,18 +17,16 @@ namespace DotFetch.NET
             }
             else
             {
-                logo = Devil();
+                logo = Lucifer();
             }
 
             /*
                 You can change this return value to render a different logo.
                 You use these values listed below insted of logo.
-
                 - WindowsX()
                 - WindowsXI()
                 - CrossSkull()
-                - Devil()
-
+                - Lucifer()
                 Default is as per your OS.
             */
             return logo;
@@ -63,7 +61,7 @@ namespace DotFetch.NET
             return AsciiArt;
         }
 
-        private static List<string> Devil()
+        private static List<string> Lucifer()
         {
             List<string> AsciiArt = new()
             {

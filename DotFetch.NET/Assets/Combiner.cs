@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DotFetch.NET
+namespace DotFetch.NET.Assets
 {
     public class Combiner
     {

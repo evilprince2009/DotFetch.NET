@@ -4,8 +4,7 @@ using System.Management;
 using System.Net;
 using System.Security.Principal;
 
-
-namespace DotFetch.NET
+namespace DotFetch.NET.Assets
 {
     public class InformationGenerator
     {
@@ -76,14 +75,14 @@ namespace DotFetch.NET
         {
             const string query = "select * from Win32_Processor";
             ManagementObjectCollection objectCollection = new ManagementObjectSearcher(query).Get();
-            
+
             foreach (ManagementObject item in objectCollection)
             {
                 try
                 {
                     return $"CPU: {item["Name"]}";
                 }
-                catch {}
+                catch { }
             }
 
             return "Couldn't detect !";
@@ -124,6 +123,9 @@ namespace DotFetch.NET
         // Check Internet IP
         public static string CheckInternetIP()
         {
+            const string localhost = "127.0.0.1";
+            if (CheckInternetConnection() == "Internet Access: Offline") return $"IP: {localhost}";
+            
             const string url = "http://checkip.dyndns.org";
             try
             {
@@ -134,7 +136,7 @@ namespace DotFetch.NET
             }
             catch
             {
-                return "IP: 127.0.0.1";
+                return $"IP: {localhost}";
             }
         }
 

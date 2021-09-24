@@ -1,4 +1,5 @@
 ﻿using System;
+using DotFetch.NET.Assets;
 
 namespace DotFetch.NET
 {
