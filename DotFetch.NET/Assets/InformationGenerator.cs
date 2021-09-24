@@ -193,7 +193,7 @@ namespace DotFetch.NET.Assets
             return $"{GetUserName()}@{GetComputerName()}";
         }
 
-        // Check if Powershell is running as Admin
+        // Check if PowerShell is running as Admin
         public static string CheckAdmin()
         {
             string role = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator)
