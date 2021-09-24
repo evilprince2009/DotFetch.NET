@@ -21,7 +21,7 @@ namespace DotFetch.NET.Assets
             information.Add(InformationGenerator.CheckDriveSpace());
             information.Add(InformationGenerator.CheckAdmin());
             information.Add(InformationGenerator.CheckInternetConnection());
-            information.Add(InformationGenerator.CheckInternetIP());
+            //information.Add(InformationGenerator.CheckInternetIP());
             information.Add(InformationGenerator.CheckBatteryPower());
 
             return information;

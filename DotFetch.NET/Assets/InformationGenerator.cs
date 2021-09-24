@@ -2,6 +2,7 @@
 using System.IO;
 using System.Management;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Security.Principal;
 
 namespace DotFetch.NET.Assets
@@ -107,17 +108,8 @@ namespace DotFetch.NET.Assets
         // Check internet connection
         public static string CheckInternetConnection()
         {
-            const string url = "http://www.google.com";
-            try
-            {
-                using var client = new WebClient();
-                using var stream = client.OpenRead(url);
-                return "Internet Access: Connected";
-            }
-            catch
-            {
-                return "Internet Access: Offline";
-            }
+            const string label = "Internet Access";
+            return NetworkInterface.GetIsNetworkAvailable() ? $"{label}: Connected" : $"{label}: Offline";
         }
 
         // Check Internet IP
