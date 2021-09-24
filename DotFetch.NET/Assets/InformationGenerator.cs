@@ -123,8 +123,8 @@ namespace DotFetch.NET.Assets
             if (CheckInternetConnection() == "Internet Access: Offline")
                 return $"IP: {ip}";
 
-            HttpClient responseCapturer = new();
-            ip = responseCapturer.GetStringAsync(url).Result;
+            HttpClient response = new();
+            ip = response.GetStringAsync(url).Result;
             return $"IP: {ip}";
         }
 
