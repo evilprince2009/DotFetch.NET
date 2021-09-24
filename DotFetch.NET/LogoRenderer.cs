@@ -17,7 +17,7 @@ namespace DotFetch.NET
             }
             else
             {
-                logo = DefaultDevil();
+                logo = Devil();
             }
 
             /*
@@ -27,7 +27,9 @@ namespace DotFetch.NET
                 - WindowsX()
                 - WindowsXI()
                 - CrossSkull()
-                - DefaultDevil()
+                - Devil()
+
+                Default is as per your OS.
             */
             return logo;
         }
@@ -61,7 +63,7 @@ namespace DotFetch.NET
             return AsciiArt;
         }
 
-        private static List<string> DefaultDevil()
+        private static List<string> Devil()
         {
             List<string> AsciiArt = new()
             {
