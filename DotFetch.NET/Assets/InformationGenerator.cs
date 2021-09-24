@@ -1,12 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Management;
-using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
-using System.Net.Sockets;
 using System.Security.Principal;
-using System.Threading.Tasks;
 
 namespace DotFetch.NET.Assets
 {
@@ -93,7 +90,7 @@ namespace DotFetch.NET.Assets
         }
 
         // CALCULATE AVAILABLE RAM
-        public static string AvailableRAM()
+        public static string RAMUsage()
         {
             const long divider = 1024 * 1024;
             const string query = "SELECT * FROM Win32_OperatingSystem";

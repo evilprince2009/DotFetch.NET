@@ -17,7 +17,7 @@ namespace DotFetch.NET.Assets
             information.Add(InformationGenerator.GetPSVersion());
             information.Add(InformationGenerator.CPUInfo());
             information.Add(InformationGenerator.GetGPU());
-            information.Add(InformationGenerator.AvailableRAM());
+            information.Add(InformationGenerator.RAMUsage());
             information.Add(InformationGenerator.CheckDriveSpace());
             information.Add(InformationGenerator.CheckAdmin());
             information.Add(InformationGenerator.CheckInternetConnection());
