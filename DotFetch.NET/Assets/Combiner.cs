@@ -15,7 +15,7 @@ namespace DotFetch.NET.Assets
 
             return string.Join("", linesBuffer);
         }
-        private static List<string> OSInformationBuffer()
+        private static List<string> OsInformationBuffer()
         {
             List<string> information = new();
             information.Add(InformationGenerator.UserAndComputerName());
@@ -41,10 +41,10 @@ namespace DotFetch.NET.Assets
         {
             List<string> combinedBuffer = new();
             List<string> balancedLogo = LogoRenderer.LogoAscii();
-            List<string> balancedInfo = OSInformationBuffer();
+            List<string> balancedInfo = OsInformationBuffer();
 
             int logoHeight = LogoRenderer.LogoAscii().Count;
-            int informationHeight = OSInformationBuffer().Count;
+            int informationHeight = OsInformationBuffer().Count;
             int heightDifference = Math.Abs(logoHeight - informationHeight);
 
             if (logoHeight > informationHeight)
