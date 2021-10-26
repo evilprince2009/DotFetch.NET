@@ -5,11 +5,21 @@ namespace DotFetch.NET.Assets
 {
     public class Combiner
     {
+        private static string LineGenerator(int userAndHostNameLength)
+        {
+            List<string> linesBuffer = new();
+            for (int i = 0; i < userAndHostNameLength; i++)
+            {
+                linesBuffer.Add("-");
+            }
+
+            return string.Join("", linesBuffer);
+        }
         private static List<string> OSInformationBuffer()
         {
             List<string> information = new();
             information.Add(InformationGenerator.UserAndComputerName());
-            information.Add("--------------------------");
+            information.Add(LineGenerator(InformationGenerator.UserAndComputerName().Length));
             information.Add(InformationGenerator.GetOS());
             information.Add(InformationGenerator.KernelVersion());
             information.Add(InformationGenerator.HostName());
