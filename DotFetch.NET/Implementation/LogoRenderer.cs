@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DotFetch.NET.Assets
+namespace DotFetch.NET.Implementation
 {
     public class LogoRenderer
     {

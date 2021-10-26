@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Security.Principal;
 
-namespace DotFetch.NET.Assets
+namespace DotFetch.NET.Implementation
 {
     public class InformationGenerator
     {
