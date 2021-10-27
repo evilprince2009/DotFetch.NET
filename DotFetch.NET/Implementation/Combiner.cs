@@ -5,10 +5,10 @@ namespace DotFetch.NET.Implementation
 {
     public class Combiner
     {
-        private static string LineGenerator(int userAndHostNameLength)
+        private static string LineGenerator(string userAndHostName)
         {
             List<string> linesBuffer = new();
-            for (int i = 0; i < userAndHostNameLength; i++)
+            for (int i = 0; i < userAndHostName.Length; i++)
             {
                 linesBuffer.Add("-");
             }
@@ -19,7 +19,7 @@ namespace DotFetch.NET.Implementation
         {
             List<string> information = new();
             information.Add(InformationGenerator.UserAndComputerName());
-            information.Add(LineGenerator(InformationGenerator.UserAndComputerName().Length));
+            information.Add(LineGenerator(InformationGenerator.UserAndComputerName()));
             information.Add(InformationGenerator.GetOS());
             information.Add(InformationGenerator.KernelVersion());
             information.Add(InformationGenerator.HostName());

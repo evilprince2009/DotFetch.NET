@@ -182,10 +182,10 @@ namespace DotFetch.NET.Implementation
             return Environment.UserName;
         }
 
-        // get ps version
+        // Get PS version
         public static string GetPSVersion()
         {
-            return "PowerShell: " + Environment.Version;
+            return $"Shell: {Environment.Version}";
         }
 
         public static string UserAndComputerName()
