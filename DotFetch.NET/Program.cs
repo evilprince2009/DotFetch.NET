@@ -5,6 +5,7 @@ namespace DotFetch.NET
 {
     class Program
     {
+        
         static void Main()
         {
             foreach (string line in Combiner.CombinedInformation())
