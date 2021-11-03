@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Management;
 using System.Net.Http;
@@ -9,13 +11,26 @@ namespace DotFetch.NET.Implementation
 {
     public class InformationGenerator
     {
+        private static Dictionary<string, string> QueryString()
+        {
+            Dictionary<string, string> buffer = new Dictionary<string, string>();
+            buffer.Add("os", "SELECT Caption FROM Win32_OperatingSystem");
+            buffer.Add("gpu", "SELECT * FROM Win32_VideoController");
+            buffer.Add("scope", "root\\CIMV2");
+            buffer.Add("host", "SELECT * FROM Win32_BaseBoard");
+            buffer.Add("path", @"\\.\root\cimv2:Win32_OperatingSystem=@");
+            buffer.Add("cpu", "Select * from Win32_Processor");
+            buffer.Add("ram", "SELECT * FROM Win32_OperatingSystem");
+
+            return buffer;
+        }
+
         // Getting Operating System
         public static string GetOS()
         {
-            const string query = "SELECT Caption FROM Win32_OperatingSystem";
             string result = string.Empty;
             ManagementObjectSearcher searcher =
-                new(query);
+                new(QueryString()["os"]);
             foreach (ManagementObject os in searcher.Get())
             {
                 result = os["Caption"].ToString();
@@ -29,9 +44,8 @@ namespace DotFetch.NET.Implementation
         // Getting GPU information
         public static string GetGPU()
         {
-            const string query = "SELECT * FROM Win32_VideoController";
             string result = string.Empty;
-            ManagementObjectSearcher searcher = new(query);
+            ManagementObjectSearcher searcher = new(QueryString()["gpu"]);
             foreach (ManagementObject gpu in searcher.Get())
             {
                 result = gpu["Name"].ToString();
@@ -49,9 +63,7 @@ namespace DotFetch.NET.Implementation
         // Getting Host Manufacturer
         public static string HostName()
         {
-            const string scope = "root\\CIMV2";
-            const string query = "SELECT * FROM Win32_BaseBoard";
-            ManagementObjectSearcher searcher = new(scope, query);
+            ManagementObjectSearcher searcher = new(QueryString()["scope"], QueryString()["host"]);
             foreach (ManagementObject informationBuffer in searcher.Get())
             {
                 if (informationBuffer != null) return $"Host: {informationBuffer.GetPropertyValue("Manufacturer")}";
@@ -63,8 +75,7 @@ namespace DotFetch.NET.Implementation
         // Getting machine uptime
         public static string UpTime()
         {
-            const string path = @"\\.\root\cimv2:Win32_OperatingSystem=@";
-            ManagementObject marker = new(path);
+            ManagementObject marker = new(QueryString()["path"]);
             DateTime lastBootUp = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
             var timeStamp = DateTime.Now.ToUniversalTime() - lastBootUp.ToUniversalTime();
             return
@@ -74,8 +85,7 @@ namespace DotFetch.NET.Implementation
         // Checking CPU information
         public static string CPUInfo()
         {
-            const string query = "select * from Win32_Processor";
-            ManagementObjectCollection objectCollection = new ManagementObjectSearcher(query).Get();
+            ManagementObjectCollection objectCollection = new ManagementObjectSearcher(QueryString()["cpu"]).Get();
 
             foreach (ManagementObject item in objectCollection)
             {
@@ -94,7 +104,7 @@ namespace DotFetch.NET.Implementation
         {
             const long divider = 1024 * 1024;
             const string query = "SELECT * FROM Win32_OperatingSystem";
-            ManagementObjectSearcher searcher = new(query);
+            ManagementObjectSearcher searcher = new(SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ);
             foreach (ManagementObject os in searcher.Get())
             {
                 var totalRam = os["TotalVisibleMemorySize"];
