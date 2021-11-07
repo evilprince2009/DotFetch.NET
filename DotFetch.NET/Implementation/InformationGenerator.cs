@@ -28,23 +28,6 @@ namespace DotFetch.NET.Implementation
             return buffer;
         }
 
-        //public static Process GetParentProcess(Process process)
-        //{
-        //    try
-        //    {
-        //        using var query = new ManagementObjectSearcher($"{QueryString()["process"]}{process.Id}");
-        //        return query
-        //            .Get()
-        //            .OfType<ManagementObject>()
-        //            .Select(p => Process.GetProcessById((int)(uint)p["ParentProcessId"]))
-        //            .FirstOrDefault();
-        //    }
-        //    catch
-        //    {
-        //        return null;
-        //    }
-        //}
-
         // Getting Operating System
         public static string GetOS()
         {
@@ -59,6 +42,14 @@ namespace DotFetch.NET.Implementation
 
             result = $"OS: {result.Remove(0, 10)}";
             return result;
+        }
+
+        // Get PS version
+        public static string GetShell()
+        {
+            string buffer = ParentProcess().ProcessName;
+            string shell = $"{buffer[..1].ToUpper()}{buffer[1..]}";
+            return $"Shell: {shell}";
         }
 
         // Getting GPU information
@@ -209,12 +200,6 @@ namespace DotFetch.NET.Implementation
             return Environment.UserName;
         }
 
-        // Get PS version
-        public static string GetPSVersion()
-        {
-            return $"Shell: {Environment.Version}";
-        }
-
         public static string UserAndComputerName()
         {
             return $"{GetUserName()}@{GetComputerName()}";
@@ -231,6 +216,9 @@ namespace DotFetch.NET.Implementation
                 : "No";
             return $"Running as Admin: {role}";
         }
+
+        // Detect Parent process
+        private static Process ParentProcess() => Process.GetProcessesByName("DotFetch.NET")[0].Parent();
     }
 }
 

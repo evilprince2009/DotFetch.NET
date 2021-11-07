@@ -24,7 +24,7 @@ namespace DotFetch.NET.Implementation
             information.Add(InformationGenerator.KernelVersion());
             information.Add(InformationGenerator.HostName());
             information.Add(InformationGenerator.UpTime());
-            information.Add(InformationGenerator.GetPSVersion());
+            information.Add(InformationGenerator.GetShell());
             information.Add(InformationGenerator.CPUInfo());
             information.Add(InformationGenerator.GetGPU());
             information.Add(InformationGenerator.RAMUsage());
