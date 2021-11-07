@@ -23,7 +23,6 @@ namespace DotFetch.NET.Implementation
             buffer.Add("ram", "SELECT * FROM Win32_OperatingSystem");
             buffer.Add("url", "https://api.ipify.org");
             buffer.Add("battery", "SELECT * FROM Win32_Battery");
-            // buffer.Add("process", "SELECT * FROM Win32_Process WHERE ProcessID=");
 
             return buffer;
         }
