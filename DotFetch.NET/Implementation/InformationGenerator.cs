@@ -57,6 +57,7 @@ namespace DotFetch.NET.Implementation
         {
             string buffer = ParentProcess().Parent().ProcessName;
             string terminal = $"{buffer[..1].ToUpper()}{buffer[1..]}";
+            if (terminal == "Explorer") terminal = "Windows Console";
             return $"Terminal: {terminal}";
         }
 
