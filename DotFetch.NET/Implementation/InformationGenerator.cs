@@ -13,7 +13,7 @@ namespace DotFetch.NET.Implementation
     {
         private static Dictionary<string, string> QueryString()
         {
-            Dictionary<string, string> buffer = new Dictionary<string, string>();
+            Dictionary<string, string> buffer = new();
             buffer.Add("os", "SELECT Caption FROM Win32_OperatingSystem");
             buffer.Add("gpu", "SELECT * FROM Win32_VideoController");
             buffer.Add("scope", "root\\CIMV2");
@@ -46,7 +46,7 @@ namespace DotFetch.NET.Implementation
         // Get PS version
         public static string GetShell()
         {
-            string buffer = ParentProcess().ProcessName;
+            string buffer = GetParentProcess().ProcessName;
             string shell = $"{buffer[..1].ToUpper()}{buffer[1..]}";
             return $"Shell: {shell}";
         }
@@ -54,7 +54,7 @@ namespace DotFetch.NET.Implementation
         // Gettting Client Terminal
         public static string GetTerminal()
         {
-            string buffer = ParentProcess().Parent().ProcessName;
+            string buffer = GetParentProcess().Parent().ProcessName;
             string terminal = $"{buffer[..1].ToUpper()}{buffer[1..]}";
             if (terminal == "Explorer") terminal = "Windows Console";
             return $"Terminal: {terminal}";
@@ -74,13 +74,13 @@ namespace DotFetch.NET.Implementation
         }
 
         // Getting Kernel build
-        public static string KernelVersion()
+        public static string GetKernelVersion()
         {
             return $"Kernel Version: {Environment.OSVersion.Version}";
         }
 
         // Getting Host Manufacturer
-        public static string HostName()
+        public static string GetHostName()
         {
             ManagementObjectSearcher searcher = new(QueryString()["scope"], QueryString()["host"]);
             foreach (ManagementObject informationBuffer in searcher.Get())
@@ -92,7 +92,7 @@ namespace DotFetch.NET.Implementation
         }
 
         // Getting machine uptime
-        public static string UpTime()
+        public static string GetUpTime()
         {
             ManagementObject marker = new(QueryString()["path"]);
             DateTime lastBootUp = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
@@ -102,7 +102,7 @@ namespace DotFetch.NET.Implementation
         }
 
         // Checking CPU information
-        public static string CPUInfo()
+        public static string GetCPUInfo()
         {
             ManagementObjectCollection objectCollection = new ManagementObjectSearcher(QueryString()["cpu"]).Get();
 
@@ -119,7 +119,7 @@ namespace DotFetch.NET.Implementation
         }
 
         // Calculate available RAM
-        public static string RAMUsage()
+        public static string GetRAMUsage()
         {
             const long divider = 1024 * 1024;
             ManagementObjectSearcher searcher = new(QueryString()["ram"]);
@@ -134,17 +134,17 @@ namespace DotFetch.NET.Implementation
         }
 
         // Check internet connection
-        public static string CheckInternetConnection()
+        public static string GetInternetConnectivity()
         {
             const string label = "Internet Access";
             return NetworkInterface.GetIsNetworkAvailable() ? $"{label}: Connected" : $"{label}: Offline";
         }
 
         // Check Internet IP
-        public static string CheckInternetIP()
+        public static string GetInternetIP()
         {
             string ip = "127.0.0.1";
-            if (CheckInternetConnection() == "Internet Access: Offline")
+            if (GetInternetConnectivity() == "Internet Access: Offline")
                 return $"IP: {ip}";
 
             HttpClient response = new();
@@ -153,12 +153,12 @@ namespace DotFetch.NET.Implementation
         }
 
         // Check C:\ Drive space
-        public static string CheckDriveSpace()
+        public static string GetDriveSpace()
         {
             const long divider = 1024 * 1024 * 1024;
             var drive = new DriveInfo(@"C:\");
-            var freeSpace = (drive.TotalFreeSpace) / divider;
-            var totalSpace = (drive.TotalSize) / divider;
+            var freeSpace = drive.TotalFreeSpace / divider;
+            var totalSpace = drive.TotalSize / divider;
             var used = (totalSpace - freeSpace) * 100 / totalSpace;
             return $"Disk (C:): {freeSpace}GB / {totalSpace}GB ({used}% used)";
         }
@@ -169,7 +169,6 @@ namespace DotFetch.NET.Implementation
         // AC power status
         private static string CheckBatteryCharging()
         {
-            
             ManagementObjectSearcher searcher = new(QueryString()["battery"]);
             foreach (ManagementObject battery in searcher.Get())
             {
@@ -185,7 +184,7 @@ namespace DotFetch.NET.Implementation
         }
 
         // Check available battery power
-        public static string CheckBatteryPower()
+        public static string GetBatteryPower()
         {
             ManagementObjectSearcher searcher = new(QueryString()["battery"]);
             foreach (ManagementObject battery in searcher.Get())
@@ -208,13 +207,13 @@ namespace DotFetch.NET.Implementation
             return Environment.UserName;
         }
 
-        public static string UserAndComputerName()
+        public static string GetUserAndComputerName()
         {
             return $"{GetUserName()}@{GetComputerName()}";
         }
 
         // Check if PowerShell is running as Admin
-        public static string CheckAdmin()
+        public static string GetAdminRole()
         {
             string role = new WindowsPrincipal(WindowsIdentity
                 .GetCurrent())
@@ -226,7 +225,7 @@ namespace DotFetch.NET.Implementation
         }
 
         // Detect Parent process
-        private static Process ParentProcess() => Process.GetProcessesByName("DotFetch.NET")[0].Parent();
+        private static Process GetParentProcess() => Process.GetProcessesByName("DotFetch.NET")[0].Parent();
     }
 }
 

@@ -41,22 +41,22 @@ namespace DotFetch.NET.Implementation
         private static List<string> OsInformationBuffer()
         {
             List<string> information = new();
-            information.Add(InformationGenerator.UserAndComputerName());
-            information.Add(LineGenerator(InformationGenerator.UserAndComputerName()));
+            information.Add(InformationGenerator.GetUserAndComputerName());
+            information.Add(LineGenerator(InformationGenerator.GetUserAndComputerName()));
             information.Add(InformationGenerator.GetOS());
-            information.Add(InformationGenerator.KernelVersion());
-            information.Add(InformationGenerator.HostName());
-            information.Add(InformationGenerator.UpTime());
+            information.Add(InformationGenerator.GetKernelVersion());
+            information.Add(InformationGenerator.GetHostName());
+            information.Add(InformationGenerator.GetUpTime());
             information.Add(InformationGenerator.GetShell());
             information.Add(InformationGenerator.GetTerminal());
-            information.Add(InformationGenerator.CPUInfo());
+            information.Add(InformationGenerator.GetCPUInfo());
             information.Add(InformationGenerator.GetGPU());
-            information.Add(InformationGenerator.RAMUsage());
-            information.Add(InformationGenerator.CheckDriveSpace());
-            information.Add(InformationGenerator.CheckAdmin());
-            information.Add(InformationGenerator.CheckInternetConnection());
-            information.Add(InformationGenerator.CheckInternetIP());
-            information.Add(InformationGenerator.CheckBatteryPower());
+            information.Add(InformationGenerator.GetRAMUsage());
+            information.Add(InformationGenerator.GetDriveSpace());
+            information.Add(InformationGenerator.GetAdminRole());
+            information.Add(InformationGenerator.GetInternetConnectivity());
+            information.Add(InformationGenerator.GetInternetIP());
+            information.Add(InformationGenerator.GetBatteryPower());
 
             return information;
         }
