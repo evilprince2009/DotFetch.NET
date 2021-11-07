@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Management;
 using DotFetch.NET.Implementation;
 
 namespace DotFetch.NET
 {
     class Program
-    {
-        
+    { 
         static void Main()
         {
             foreach (string line in Combiner.CombinedInformation())

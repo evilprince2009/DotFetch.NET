@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Management;
 using System.Net.Http;
@@ -23,9 +23,27 @@ namespace DotFetch.NET.Implementation
             buffer.Add("ram", "SELECT * FROM Win32_OperatingSystem");
             buffer.Add("url", "https://api.ipify.org");
             buffer.Add("battery", "SELECT * FROM Win32_Battery");
+            // buffer.Add("process", "SELECT * FROM Win32_Process WHERE ProcessID=");
 
             return buffer;
         }
+
+        //public static Process GetParentProcess(Process process)
+        //{
+        //    try
+        //    {
+        //        using var query = new ManagementObjectSearcher($"{QueryString()["process"]}{process.Id}");
+        //        return query
+        //            .Get()
+        //            .OfType<ManagementObject>()
+        //            .Select(p => Process.GetProcessById((int)(uint)p["ParentProcessId"]))
+        //            .FirstOrDefault();
+        //    }
+        //    catch
+        //    {
+        //        return null;
+        //    }
+        //}
 
         // Getting Operating System
         public static string GetOS()
@@ -101,7 +119,7 @@ namespace DotFetch.NET.Implementation
             return "Couldn't detect !";
         }
 
-        // CALCULATE AVAILABLE RAM
+        // Calculate available RAM
         public static string RAMUsage()
         {
             const long divider = 1024 * 1024;
