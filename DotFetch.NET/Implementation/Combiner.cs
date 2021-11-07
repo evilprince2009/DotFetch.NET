@@ -5,38 +5,6 @@ namespace DotFetch.NET.Implementation
 {
     public class Combiner
     {
-        private static string LineGenerator(string userAndHostName)
-        {
-            List<string> linesBuffer = new();
-            for (int i = 0; i < userAndHostName.Length; i++)
-            {
-                linesBuffer.Add("-");
-            }
-
-            return string.Join("", linesBuffer);
-        }
-        private static List<string> OsInformationBuffer()
-        {
-            List<string> information = new();
-            information.Add(InformationGenerator.UserAndComputerName());
-            information.Add(LineGenerator(InformationGenerator.UserAndComputerName()));
-            information.Add(InformationGenerator.GetOS());
-            information.Add(InformationGenerator.KernelVersion());
-            information.Add(InformationGenerator.HostName());
-            information.Add(InformationGenerator.UpTime());
-            information.Add(InformationGenerator.GetShell());
-            information.Add(InformationGenerator.CPUInfo());
-            information.Add(InformationGenerator.GetGPU());
-            information.Add(InformationGenerator.RAMUsage());
-            information.Add(InformationGenerator.CheckDriveSpace());
-            information.Add(InformationGenerator.CheckAdmin());
-            information.Add(InformationGenerator.CheckInternetConnection());
-            information.Add(InformationGenerator.CheckInternetIP());
-            information.Add(InformationGenerator.CheckBatteryPower());
-
-            return information;
-        }
-
         public static List<string> CombinedInformation()
         {
             List<string> combinedBuffer = new();
@@ -68,6 +36,39 @@ namespace DotFetch.NET.Implementation
             }
 
             return combinedBuffer;
+        }
+
+        private static List<string> OsInformationBuffer()
+        {
+            List<string> information = new();
+            information.Add(InformationGenerator.UserAndComputerName());
+            information.Add(LineGenerator(InformationGenerator.UserAndComputerName()));
+            information.Add(InformationGenerator.GetOS());
+            information.Add(InformationGenerator.KernelVersion());
+            information.Add(InformationGenerator.HostName());
+            information.Add(InformationGenerator.UpTime());
+            information.Add(InformationGenerator.GetShell());
+            information.Add(InformationGenerator.GetTerminal());
+            information.Add(InformationGenerator.CPUInfo());
+            information.Add(InformationGenerator.GetGPU());
+            information.Add(InformationGenerator.RAMUsage());
+            information.Add(InformationGenerator.CheckDriveSpace());
+            information.Add(InformationGenerator.CheckAdmin());
+            information.Add(InformationGenerator.CheckInternetConnection());
+            information.Add(InformationGenerator.CheckInternetIP());
+            information.Add(InformationGenerator.CheckBatteryPower());
+
+            return information;
+        }
+        private static string LineGenerator(string userAndHostName)
+        {
+            List<string> linesBuffer = new();
+            for (int i = 0; i < userAndHostName.Length; i++)
+            {
+                linesBuffer.Add("-");
+            }
+
+            return string.Join("", linesBuffer);
         }
 
         // Author: Ibne Nahian (evilprince2009)

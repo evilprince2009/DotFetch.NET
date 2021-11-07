@@ -52,6 +52,14 @@ namespace DotFetch.NET.Implementation
             return $"Shell: {shell}";
         }
 
+        // Gettting Client Terminal
+        public static string GetTerminal()
+        {
+            string buffer = ParentProcess().Parent().ProcessName;
+            string terminal = $"{buffer[..1].ToUpper()}{buffer[1..]}";
+            return $"Terminal: {terminal}";
+        }
+
         // Getting GPU information
         public static string GetGPU()
         {
