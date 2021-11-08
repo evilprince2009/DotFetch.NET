@@ -23,6 +23,7 @@ namespace DotFetch.NET.Implementation
             buffer.Add("ram", "SELECT * FROM Win32_OperatingSystem");
             buffer.Add("url", "https://api.ipify.org");
             buffer.Add("battery", "SELECT * FROM Win32_Battery");
+            buffer.Add("nf", "Couldn't detect");
 
             return buffer;
         }
@@ -88,7 +89,7 @@ namespace DotFetch.NET.Implementation
                 if (informationBuffer != null) return $"Host: {informationBuffer.GetPropertyValue("Manufacturer")}";
             }
 
-            return "Host: Unknown";
+            return $"Host: {QueryString()["nf"]}";
         }
 
         // Getting machine uptime
@@ -115,7 +116,7 @@ namespace DotFetch.NET.Implementation
                 catch { }
             }
 
-            return "Couldn't detect !";
+            return $"CPU: {QueryString()["nf"]}";
         }
 
         // Calculate available RAM
@@ -130,7 +131,7 @@ namespace DotFetch.NET.Implementation
                 string diskUsage = $"{Convert.ToInt64(freeRam) / divider}GB / {Convert.ToInt64(totalRam) / divider}GB";
                 return $"Memory: {diskUsage}";
             }
-            return "Memory: Unknown";
+            return $"Memory: {QueryString()["nf"]}";
         }
 
         // Check internet connection
@@ -180,7 +181,7 @@ namespace DotFetch.NET.Implementation
 
                 return "Unplugged";
             }
-            return "Unknown";
+            return QueryString()["nf"];
         }
 
         // Check available battery power
@@ -192,7 +193,7 @@ namespace DotFetch.NET.Implementation
                 var batteryLife = battery["EstimatedChargeRemaining"];
                 return $"Power: {batteryLife}% , {CheckBatteryCharging()}";
             }
-            return "Power: Unknown";
+            return $"Power: {QueryString()["nf"]}";
         }
 
         // Get computer and username
