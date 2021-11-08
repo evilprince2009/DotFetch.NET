@@ -195,21 +195,10 @@ namespace DotFetch.NET.Implementation
             return "Power: Unknown";
         }
 
-        // Get computer name
-        private static string GetComputerName()
-        {
-            return Environment.MachineName;
-        }
-
-        // Get user name
-        private static string GetUserName()
-        {
-            return Environment.UserName;
-        }
-
+        // Get computer and username
         public static string GetUserAndComputerName()
         {
-            return $"{GetUserName()}@{GetComputerName()}";
+            return $"{Environment.UserName}@{Environment.MachineName}";
         }
 
         // Check if PowerShell is running as Admin
