@@ -12,6 +12,8 @@ _DotFetch.NET_ is basically .NET port of _[DotFetch](https://github.com/evilprin
 
 ![DotFetch.NET](https://github.com/evilprince2009/DotFetch.NET/blob/main/Images/Screenshot_2.png)
 
+![DotFetch.NET](https://github.com/evilprince2009/DotFetch.NET/blob/main/Images/Screenshot_3.png)
+
 ### This is how it looks like
 
 ### Build DotFetch.NET from Source Code
