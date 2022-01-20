@@ -23,14 +23,13 @@ namespace DotFetch.NET.Implementation
 
             return processIndexdName;
         }
-
-    private static Process FindPidFromIndexedProcessName(string indexedProcessName)
-    {
+        
+        private static Process FindPidFromIndexedProcessName(string indexedProcessName)
+        {
             PerformanceCounter parentId = new("Process", "Creating Process ID", indexedProcessName);
             return Process.GetProcessById((int)parentId.NextValue());
-    }
-
-    public static Process Parent(this Process process) => FindPidFromIndexedProcessName(FindIndexedProcessName(process.Id));
-
+        }
+        
+        public static Process Parent(this Process process) => FindPidFromIndexedProcessName(FindIndexedProcessName(process.Id));
     }
 }
