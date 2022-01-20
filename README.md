@@ -1,10 +1,16 @@
-## DotFetch.NET
+# DotFetch.NET
 
-### DotNet version of DotFetch , Written in C# rather than PowerShell
+## DotNet version of DotFetch , Written in C# rather than PowerShell
 
 _DotFetch.NET_ is basically .NET port of _[DotFetch](https://github.com/evilprince2009/DotFetch)_ which is re-written in C#. If you want to take a look at original _DotFetch_ , you can find it _**[here](https://github.com/evilprince2009/DotFetch)**_. _DotFetch.NET_ displays information about your operating system, software and hardware in an way similar to _DotFetch_ , but it's little more time efficient than original _DotFetch_.
 
+### Windows 10
+
 ![DotFetch.NET](https://github.com/evilprince2009/DotFetch.NET/blob/main/Images/Screenshot_1.png)
+
+### Windows 11
+
+![DotFetch.NET](https://github.com/evilprince2009/DotFetch.NET/blob/main/Images/Screenshot_2.png)
 
 ### This is how it looks like
 
