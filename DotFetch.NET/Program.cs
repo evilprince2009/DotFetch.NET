@@ -1,16 +1,12 @@
 ﻿using DotFetch.NET.Implementation;
 
 Console.WriteLine(Environment.NewLine);
-
-foreach (string line in Combiner.CombinedInformation())
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine("\t" + line);
-}
-
-Console.ResetColor();
-
+Console.ForegroundColor = ConsoleColor.Yellow;
 // Author: Ibne Nahian (evilprince2009)
+foreach (string line in Combiner.CombinedInformation())
+    Console.WriteLine("\t" + line);
+// Author: Ibne Nahian (evilprince2009)
+Console.ResetColor();
 
 /* _______ ____
   | __/ _ \| __|
