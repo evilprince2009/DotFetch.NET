@@ -1,20 +1,10 @@
-﻿using System;
-using DotFetch.NET.Implementation;
+﻿using DotFetch.NET.Implementation;
 
-namespace DotFetch.NET
-{
-    class Program
-    { 
-        static void Main()
-        {
-            foreach (string line in Combiner.CombinedInformation())
-            {
-                Console.WriteLine(line);
-            }
-        }
-        // Author: Ibne Nahian (evilprince2009)
-    }
-}
+
+foreach (string line in Combiner.CombinedInformation())
+    Console.WriteLine(line);
+
+// Author: Ibne Nahian (evilprince2009)
 
 /* _______ ____
   | __/ _ \| __|
