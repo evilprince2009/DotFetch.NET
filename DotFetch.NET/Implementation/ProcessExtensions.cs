@@ -4,30 +4,31 @@ namespace DotFetch.NET.Implementation
 {
     public static class ProcessExtensions
     {
-        private static string FindIndexedProcessName(int pid)
+        private static string FindIndexedProcessName(int process_id)
         {
-            var processName = Process.GetProcessById(pid).ProcessName;
-            var processesByName = Process.GetProcessesByName(processName);
-            string? processIndexdName = null;
+            string process_name = Process.GetProcessById(process_id).ProcessName;
+            Process[] processes_by_name = Process.GetProcessesByName(process_name);
+            string process_indexed_name = string.Empty;
             
-            for (var index = 0; index < processesByName.Length; index++)
+            for (int index = 0; index < processes_by_name.Length; index++)
             {
-                processIndexdName = index == 0 ? processName : processName + "#" + index;
-                PerformanceCounter processId = new("Process", "ID Process", processIndexdName);
+                process_indexed_name = index == 0 ? process_name : $"{process_name}#{index}";
+
+                PerformanceCounter processId = new("Process", "ID Process", process_indexed_name);
                 
-                if ((int) processId.NextValue() == pid)
+                if ((int) processId.NextValue() == process_id)
                 {
-                    return processIndexdName;
+                    return process_indexed_name;
                 }
             }
 
-            return processIndexdName;
+            return process_indexed_name;
         }
         
-        private static Process FindPidFromIndexedProcessName(string indexedProcessName)
+        private static Process FindPidFromIndexedProcessName(string indexed_process_name)
         {
-            PerformanceCounter parentId = new("Process", "Creating Process ID", indexedProcessName);
-            return Process.GetProcessById((int)parentId.NextValue());
+            PerformanceCounter parent_id = new("Process", "Creating Process ID", indexed_process_name);
+            return Process.GetProcessById((int)parent_id.NextValue());
         }
         
         public static Process Parent(this Process process) => FindPidFromIndexedProcessName(FindIndexedProcessName(process.Id));
