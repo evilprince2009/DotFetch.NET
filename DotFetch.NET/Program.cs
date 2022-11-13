@@ -4,7 +4,9 @@ Console.WriteLine(Environment.NewLine);
 Console.ForegroundColor = ConsoleColor.Yellow;
 // Author: Ibne Nahian (evilprince2009)
 foreach (string line in Combiner.CombinedInformation())
+{
     Console.WriteLine("\t" + line);
+}
 // Author: Ibne Nahian (evilprince2009)
 Console.WriteLine("\t" + "Coded with <3 by Ibne Nahian (evilprince2009) :)");
 Console.ResetColor();

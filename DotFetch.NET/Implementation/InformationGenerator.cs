@@ -7,7 +7,7 @@ namespace DotFetch.NET.Implementation
 {
     public class InformationGenerator
     {
-        private static Dictionary<string, string> QueryString()
+        private static string QueryString(string keyword)
         {
             Dictionary<string, string> buffer = new();
             buffer.Add("os", "SELECT Caption FROM Win32_OperatingSystem");
@@ -19,9 +19,9 @@ namespace DotFetch.NET.Implementation
             buffer.Add("ram", "SELECT * FROM Win32_OperatingSystem");
             buffer.Add("url", "https://api.ipify.org");
             buffer.Add("battery", "SELECT * FROM Win32_Battery");
-            buffer.Add("nf", "Couldn't detect");
+            buffer.Add("not_found", "Couldn't detect");
 
-            return buffer;
+            return buffer[keyword];
         }
 
         // Getting Operating System
@@ -29,7 +29,7 @@ namespace DotFetch.NET.Implementation
         {
             string result = string.Empty;
             ManagementObjectSearcher searcher =
-                new(QueryString()["os"]);
+                new(QueryString("os"));
             foreach (ManagementObject os in searcher.Get())
             {
                 result = os["Caption"].ToString();
@@ -61,7 +61,7 @@ namespace DotFetch.NET.Implementation
         public static string GetGPU()
         {
             string result = string.Empty;
-            ManagementObjectSearcher searcher = new(QueryString()["gpu"]);
+            ManagementObjectSearcher searcher = new(QueryString("gpu"));
             foreach (ManagementObject gpu in searcher.Get())
             {
                 result = gpu["Name"].ToString();
@@ -79,19 +79,19 @@ namespace DotFetch.NET.Implementation
         // Getting Host Manufacturer
         public static string GetHostName()
         {
-            ManagementObjectSearcher searcher = new(QueryString()["scope"], QueryString()["host"]);
+            ManagementObjectSearcher searcher = new(QueryString("scope"), QueryString("host"));
             foreach (ManagementObject informationBuffer in searcher.Get())
             {
                 if (informationBuffer != null) return $"Host: {informationBuffer.GetPropertyValue("Manufacturer")}";
             }
 
-            return $"Host: {QueryString()["nf"]}";
+            return $"Host: {QueryString("not_found")}";
         }
 
         // Getting machine uptime
         public static string GetUpTime()
         {
-            ManagementObject marker = new(QueryString()["path"]);
+            ManagementObject marker = new(QueryString("path"));
             DateTime lastBootUp = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
             var timeStamp = DateTime.Now.ToUniversalTime() - lastBootUp.ToUniversalTime();
             return
@@ -101,7 +101,7 @@ namespace DotFetch.NET.Implementation
         // Checking CPU information
         public static string GetCPUInfo()
         {
-            ManagementObjectCollection objectCollection = new ManagementObjectSearcher(QueryString()["cpu"]).Get();
+            ManagementObjectCollection objectCollection = new ManagementObjectSearcher(QueryString("cpu")).Get();
 
             foreach (ManagementObject item in objectCollection)
             {
@@ -112,14 +112,14 @@ namespace DotFetch.NET.Implementation
                 catch { }
             }
 
-            return $"CPU: {QueryString()["nf"]}";
+            return $"CPU: {QueryString("not_found")}";
         }
 
         // Calculate available RAM
         public static string GetRAMUsage()
         {
             const long divider = 1024 * 1024;
-            ManagementObjectSearcher searcher = new(QueryString()["ram"]);
+            ManagementObjectSearcher searcher = new(QueryString("ram"));
             foreach (ManagementObject os in searcher.Get())
             {
                 var totalRam = os["TotalVisibleMemorySize"];
@@ -127,7 +127,7 @@ namespace DotFetch.NET.Implementation
                 string diskUsage = $"{Convert.ToInt64(freeRam) / divider}GB / {Convert.ToInt64(totalRam) / divider}GB";
                 return $"Memory: {diskUsage}";
             }
-            return $"Memory: {QueryString()["nf"]}";
+            return $"Memory: {QueryString("not_found")}";
         }
 
         // Check internet connection
@@ -145,7 +145,7 @@ namespace DotFetch.NET.Implementation
                 return $"IP: {ip}";
 
             HttpClient response = new();
-            ip = response.GetStringAsync(QueryString()["url"]).Result;
+            ip = response.GetStringAsync(QueryString("url")).Result;
             return $"IP: {ip}";
         }
 
@@ -166,7 +166,7 @@ namespace DotFetch.NET.Implementation
         // AC power status
         private static string CheckBatteryCharging()
         {
-            ManagementObjectSearcher searcher = new(QueryString()["battery"]);
+            ManagementObjectSearcher searcher = new(QueryString("battery"));
             foreach (ManagementObject battery in searcher.Get())
             {
                 var batteryLife = battery["BatteryStatus"];
@@ -177,19 +177,19 @@ namespace DotFetch.NET.Implementation
 
                 return "Unplugged";
             }
-            return QueryString()["nf"];
+            return QueryString("not_found");
         }
 
         // Check available battery power
         public static string GetBatteryPower()
         {
-            ManagementObjectSearcher searcher = new(QueryString()["battery"]);
+            ManagementObjectSearcher searcher = new(QueryString("battery"));
             foreach (ManagementObject battery in searcher.Get())
             {
                 var batteryLife = battery["EstimatedChargeRemaining"];
                 return $"Power: {batteryLife}% , {CheckBatteryCharging()}";
             }
-            return $"Power: {QueryString()["nf"]}";
+            return $"Power: {QueryString("not_found")}";
         }
 
         // Get computer and username
