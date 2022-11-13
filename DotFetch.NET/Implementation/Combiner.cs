@@ -4,35 +4,35 @@
     {
         public static List<string> CombinedInformation()
         {
-            List<string> combinedBuffer = new();
-            List<string> balancedLogo = LogoRenderer.LogoAscii();
-            List<string> balancedInfo = OsInformationBuffer();
+            List<string> combined_buffer = new();
+            List<string> balanced_logo = LogoRenderer.LogoAscii();
+            List<string> balanced_info = OsInformationBuffer();
 
-            int logoHeight = LogoRenderer.LogoAscii().Count;
-            int informationHeight = OsInformationBuffer().Count;
-            int heightDifference = Math.Abs(logoHeight - informationHeight);
+            int logo_height = LogoRenderer.LogoAscii().Count;
+            int info_height = OsInformationBuffer().Count;
+            int height_difference = Math.Abs(logo_height - info_height);
 
-            if (logoHeight > informationHeight)
+            if (logo_height > info_height)
             {
-                for (int i = 0; i < heightDifference; i++)
+                for (int i = 0; i < height_difference; i++)
                 {
-                    balancedInfo.Add("");
+                    balanced_info.Add("");
                 }
             }
-            else if (informationHeight > logoHeight)
+            else if (info_height > logo_height)
             {
-                for (int i = 0; i < heightDifference; i++)
+                for (int i = 0; i < height_difference; i++)
                 {
-                    balancedLogo.Add("");
+                    balanced_logo.Add("");
                 }
             }
 
-            for (int i = 0; i < balancedLogo.Count; i++)
+            for (int i = 0; i < balanced_logo.Count; i++)
             {
-                combinedBuffer.Add($"{balancedLogo[i]} {balancedInfo[i]}");
+                combined_buffer.Add($"{balanced_logo[i]} {balanced_info[i]}");
             }
 
-            return combinedBuffer;
+            return combined_buffer;
         }
 
         private static List<string> OsInformationBuffer()
@@ -57,15 +57,15 @@
 
             return information;
         }
-        private static string LineGenerator(string userAndHostName)
+        private static string LineGenerator(string username_and_host)
         {
-            List<string> linesBuffer = new();
-            for (int i = 0; i < userAndHostName.Length; i++)
+            List<string> lines_buffer = new();
+            for (int i = 0; i < username_and_host.Length; i++)
             {
-                linesBuffer.Add("-");
+                lines_buffer.Add("-");
             }
 
-            return string.Join("", linesBuffer);
+            return string.Join("", lines_buffer);
         }
 
         // Author: Ibne Nahian (evilprince2009)
