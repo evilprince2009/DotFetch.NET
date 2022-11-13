@@ -80,9 +80,9 @@ namespace DotFetch.NET.Implementation
         public static string GetHostName()
         {
             ManagementObjectSearcher searcher = new(QueryString("scope"), QueryString("host"));
-            foreach (ManagementObject informationBuffer in searcher.Get())
+            foreach (ManagementObject information_buffer in searcher.Get())
             {
-                if (informationBuffer != null) return $"Host: {informationBuffer.GetPropertyValue("Manufacturer")}";
+                if (information_buffer != null) return $"Host: {information_buffer.GetPropertyValue("Manufacturer")}";
             }
 
             return $"Host: {QueryString("not_found")}";
@@ -92,18 +92,18 @@ namespace DotFetch.NET.Implementation
         public static string GetUpTime()
         {
             ManagementObject marker = new(QueryString("path"));
-            DateTime lastBootUp = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
-            var timeStamp = DateTime.Now.ToUniversalTime() - lastBootUp.ToUniversalTime();
+            DateTime last_boot_up = ManagementDateTimeConverter.ToDateTime(marker["LastBootUpTime"].ToString());
+            var time_stamp = DateTime.Now.ToUniversalTime() - last_boot_up.ToUniversalTime();
             return
-                $"Uptime: {timeStamp.Days} Days {timeStamp.Hours} Hours {timeStamp.Minutes} Minutes";
+                $"Uptime: {time_stamp.Days} Days {time_stamp.Hours} Hours {time_stamp.Minutes} Minutes";
         }
 
         // Checking CPU information
         public static string GetCPUInfo()
         {
-            ManagementObjectCollection objectCollection = new ManagementObjectSearcher(QueryString("cpu")).Get();
+            ManagementObjectCollection cpu_object = new ManagementObjectSearcher(QueryString("cpu")).Get();
 
-            foreach (ManagementObject item in objectCollection)
+            foreach (ManagementObject item in cpu_object)
             {
                 try
                 {
@@ -122,10 +122,10 @@ namespace DotFetch.NET.Implementation
             ManagementObjectSearcher searcher = new(QueryString("ram"));
             foreach (ManagementObject os in searcher.Get())
             {
-                var totalRam = os["TotalVisibleMemorySize"];
-                var freeRam = os["FreePhysicalMemory"];
-                string diskUsage = $"{Convert.ToInt64(freeRam) / divider}GB / {Convert.ToInt64(totalRam) / divider}GB";
-                return $"Memory: {diskUsage}";
+                var total_ram = os["TotalVisibleMemorySize"];
+                var available_ram = os["FreePhysicalMemory"];
+                string primary_disk_usage = $"{Convert.ToInt64(available_ram) / divider}GB / {Convert.ToInt64(total_ram) / divider}GB";
+                return $"Memory: {primary_disk_usage}";
             }
             return $"Memory: {QueryString("not_found")}";
         }
@@ -154,10 +154,10 @@ namespace DotFetch.NET.Implementation
         {
             const long divider = 1024 * 1024 * 1024;
             var drive = new DriveInfo(@"C:\");
-            var freeSpace = drive.TotalFreeSpace / divider;
-            var totalSpace = drive.TotalSize / divider;
-            var used = (totalSpace - freeSpace) * 100 / totalSpace;
-            return $"Disk (C:): {freeSpace}GB / {totalSpace}GB ({used}% used)";
+            var available_space = drive.TotalFreeSpace / divider;
+            var total_space = drive.TotalSize / divider;
+            var used_space = (total_space - available_space) * 100 / total_space;
+            return $"Disk (C:): {available_space}GB / {total_space}GB ({used_space}% used)";
         }
 
         // Information generator
@@ -169,8 +169,8 @@ namespace DotFetch.NET.Implementation
             ManagementObjectSearcher searcher = new(QueryString("battery"));
             foreach (ManagementObject battery in searcher.Get())
             {
-                var batteryLife = battery["BatteryStatus"];
-                if (batteryLife.ToString() == "2")
+                var battery_life = battery["BatteryStatus"];
+                if (battery_life.ToString() == "2")
                 {
                     return "Connected";
                 }
@@ -186,8 +186,8 @@ namespace DotFetch.NET.Implementation
             ManagementObjectSearcher searcher = new(QueryString("battery"));
             foreach (ManagementObject battery in searcher.Get())
             {
-                var batteryLife = battery["EstimatedChargeRemaining"];
-                return $"Power: {batteryLife}% , {CheckBatteryCharging()}";
+                var remaining_battery_life = battery["EstimatedChargeRemaining"];
+                return $"Power: {remaining_battery_life}% , {CheckBatteryCharging()}";
             }
             return $"Power: {QueryString("not_found")}";
         }
