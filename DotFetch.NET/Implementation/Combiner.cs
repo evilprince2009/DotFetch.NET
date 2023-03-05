@@ -37,23 +37,25 @@
 
         private static List<string> OsInformationBuffer()
         {
-            List<string> information = new();
-            information.Add(InformationGenerator.GetUserAndComputerName());
-            information.Add(LineGenerator(InformationGenerator.GetUserAndComputerName()));
-            information.Add(InformationGenerator.GetOS());
-            information.Add(InformationGenerator.GetKernelVersion());
-            information.Add(InformationGenerator.GetHostName());
-            information.Add(InformationGenerator.GetUpTime());
-            information.Add(InformationGenerator.GetShell());
-            information.Add(InformationGenerator.GetTerminal());
-            information.Add(InformationGenerator.GetCPUInfo());
-            information.Add(InformationGenerator.GetGPU());
-            information.Add(InformationGenerator.GetRAMUsage());
-            information.Add(InformationGenerator.GetDriveSpace());
-            information.Add(InformationGenerator.GetAdminRole());
-            information.Add(InformationGenerator.GetInternetConnectivity());
-            information.Add(InformationGenerator.GetInternetIP());
-            information.Add(InformationGenerator.GetBatteryPower());
+            List<string> information = new()
+            {
+                InformationGenerator.GetUserAndComputerName(),
+                LineGenerator(InformationGenerator.GetUserAndComputerName()),
+                InformationGenerator.GetOS(),
+                InformationGenerator.GetKernelVersion(),
+                InformationGenerator.GetHostName(),
+                InformationGenerator.GetUpTime(),
+                InformationGenerator.GetShell(),
+                InformationGenerator.GetTerminal(),
+                InformationGenerator.GetCPUInfo(),
+                InformationGenerator.GetGPU(),
+                InformationGenerator.GetRAMUsage(),
+                InformationGenerator.GetDriveSpace(),
+                InformationGenerator.GetAdminRole(),
+                InformationGenerator.GetInternetConnectivity(),
+                InformationGenerator.GetInternetIP(),
+                InformationGenerator.GetBatteryPower()
+            };
 
             return information;
         }
