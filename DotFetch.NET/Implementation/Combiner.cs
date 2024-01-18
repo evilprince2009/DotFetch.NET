@@ -37,10 +37,11 @@
 
         private static List<string> OsInformationBuffer()
         {
+            string lines = LineGenerator(InformationGenerator.GetUserAndComputerName());
             List<string> information = new()
             {
                 InformationGenerator.GetUserAndComputerName(),
-                LineGenerator(InformationGenerator.GetUserAndComputerName()),
+                lines,
                 InformationGenerator.GetOS(),
                 InformationGenerator.GetKernelVersion(),
                 InformationGenerator.GetHostName(),
